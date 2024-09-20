@@ -1,0 +1,8 @@
+Architecture
+============
+
+Software
+--------
+
+Hardware
+--------
