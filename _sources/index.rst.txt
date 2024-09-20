@@ -6,12 +6,24 @@
 LLM-Navigation documentation
 ============================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Navigate the environment using the 3D Scene Graph and LLM.
 
+Links
+-----
+
+* `Hackster.io Project <https://www.hackster.io/519753/navigator-robo-guide-for-your-room-daff65>`_
+* `GitHub repository <https://github.com/YuZhong-Chen/LLM-Navigation>`_
 
 .. toctree::
+   :caption: Introduction
    :maxdepth: 2
-   :caption: Contents:
+   :numbered:
 
+   introduction/introduction
+
+.. toctree::
+   :caption: Installation
+   :maxdepth: 2
+   :numbered:
+
+   installation/installation

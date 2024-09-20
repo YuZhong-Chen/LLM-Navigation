@@ -1,0 +1,20 @@
+Introduction
+============
+
+Introduction
+------------
+
+Navigating in a previously unseen environment is a challenging task within the field of robotic learning, 
+as the agent has to perform localization, mapping and path proposing in real-time. Further, 
+providing an intuitive interface for the users to guide the agent, such as natural language instructions, 
+can make the task more difficult. However, it is a valuable area of study. In this research, 
+the agent is tasked to navigate to the specified goal location using its forward-facing RGBD image observations and a goal query provided in natural language.
+
+Features
+--------
+
+- Automatically navigate the robot to a specific goal without any high-cost sensors.
+- Based on a single camera and use deep learning methods.
+- Use Sim-to-Real technology to eliminate the gap between virtual environment and real world.
+- Introduce Virtual guidance to entice the agent to move toward a specific direction.
+- Use Reinforcement learning to avoid obstacles while driving through crowds of people.
