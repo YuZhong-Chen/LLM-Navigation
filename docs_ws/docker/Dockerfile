@@ -66,10 +66,13 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
 
 # TODO: Add more commands here
 # For example, to install additional packages, uncomment the following lines and add the package names
-# RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
-#     apt-get update && apt-get install -y \
-#     $OTHER_PACKAGES \
-#     && rm -rf /var/lib/apt/lists/*
+
+# Setup locale
+RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
+    apt-get update && apt-get install -y \
+    locales \
+    && rm -rf /var/lib/apt/lists/*
+RUN locale-gen en_US.UTF-8
 
 # Install Sphinx and Sphinx RTD theme
 RUN pip3 install --no-cache-dir \
