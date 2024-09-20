@@ -67,6 +67,13 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
 # TODO: Add more commands here
 # For example, to install additional packages, uncomment the following lines and add the package names
 
+# Install Github Pages dependencies
+# Use the command: ghp-import -n -p -f _build/html
+RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
+    apt-get update && apt-get install -y \
+    ghp-import \
+    && rm -rf /var/lib/apt/lists/*
+
 # Setup locale
 RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     apt-get update && apt-get install -y \
