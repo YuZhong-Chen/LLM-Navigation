@@ -71,6 +71,12 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
 #     $OTHER_PACKAGES \
 #     && rm -rf /var/lib/apt/lists/*
 
+# Install Sphinx and Sphinx RTD theme
+RUN pip3 install --no-cache-dir \
+    sphinx \
+    sphinx-rtd-theme
+ENV PATH="/home/$USERNAME/.local/bin:${PATH}"
+
 USER $USERNAME
 # TODO: Run additional commands as non-root user here
 COPY .bashrc /home/$USERNAME/.bashrc
