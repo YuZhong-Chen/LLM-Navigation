@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Introduction &mdash; LLM-Navigation  documentation</title>
+  <title>2. Architecture &mdash; LLM-Navigation  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Architecture" href="architecture.html" />
-    <link rel="prev" title="LLM-Navigation documentation" href="../index.html" /> 
+    <link rel="next" title="3. How to use the code" href="how_to_use.html" />
+    <link rel="prev" title="1. Introduction" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,12 +46,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">1.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#features">1.2. Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#software">2.1. Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware">2.2. Hardware</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">2. Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_use.html">3. How to use the code</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
@@ -77,9 +77,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Introduction</li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Architecture</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/introduction/introduction.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/introduction/architecture.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -87,31 +87,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="introduction">
-<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
-<section id="id1">
-<h2><span class="section-number">1.1. </span>Introduction<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>Navigating in a previously unseen environment is a challenging task within the field of robotic learning,
-as the agent has to perform localization, mapping and path proposing in real-time. Further,
-providing an intuitive interface for the users to guide the agent, such as natural language instructions,
-can make the task more difficult. However, it is a valuable area of study. In this research,
-the agent is tasked to navigate to the specified goal location using its forward-facing RGBD image observations and a goal query provided in natural language.</p>
-<figure class="align-center" id="id2">
-<img alt="image_1" src="../_images/image_1.png" />
-<figcaption>
-<p><span class="caption-text">Pipeline</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
-</figcaption>
-</figure>
+  <section id="architecture">
+<h1><span class="section-number">2. </span>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h1>
+<section id="software">
+<h2><span class="section-number">2.1. </span>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h2>
 </section>
-<section id="features">
-<h2><span class="section-number">1.2. </span>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>Automatically navigate the robot to a specific goal without any high-cost sensors.</p></li>
-<li><p>Based on a single camera and use deep learning methods.</p></li>
-<li><p>Use Sim-to-Real technology to eliminate the gap between virtual environment and real world.</p></li>
-<li><p>Introduce Virtual guidance to entice the agent to move toward a specific direction.</p></li>
-<li><p>Use Reinforcement learning to avoid obstacles while driving through crowds of people.</p></li>
-</ul>
+<section id="hardware">
+<h2><span class="section-number">2.2. </span>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -119,8 +101,8 @@ the agent is tasked to navigate to the specified goal location using its forward
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="LLM-Navigation documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="architecture.html" class="btn btn-neutral float-right" title="2. Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="how_to_use.html" class="btn btn-neutral float-right" title="3. How to use the code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

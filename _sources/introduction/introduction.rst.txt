@@ -10,8 +10,12 @@ providing an intuitive interface for the users to guide the agent, such as natur
 can make the task more difficult. However, it is a valuable area of study. In this research, 
 the agent is tasked to navigate to the specified goal location using its forward-facing RGBD image observations and a goal query provided in natural language.
 
-.. image:: ./images/image_1.png
+.. figure:: ./images/image_1.png
+    :align: center
     :alt: image_1
+
+    Pipeline
+    
 
 Features
 --------

@@ -20,6 +20,8 @@ Links
    :numbered:
 
    introduction/introduction
+   introduction/architecture
+   introduction/how_to_use
 
 .. toctree::
    :caption: Installation
@@ -27,3 +29,10 @@ Links
    :numbered:
 
    installation/installation
+
+.. toctree::
+   :caption: Demo
+   :maxdepth: 2
+   :numbered:
+
+   demo/demo
