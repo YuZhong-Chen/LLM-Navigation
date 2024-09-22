@@ -81,10 +81,11 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     && rm -rf /var/lib/apt/lists/*
 RUN locale-gen en_US.UTF-8
 
-# Install Sphinx and Sphinx RTD theme
+# Install Sphinx, Sphinx RTD theme, and other plugins
 RUN pip3 install --no-cache-dir \
     sphinx \
-    sphinx-rtd-theme
+    sphinx-rtd-theme \
+    sphinx-copybutton
 ENV PATH="/home/$USERNAME/.local/bin:${PATH}"
 
 USER $USERNAME
