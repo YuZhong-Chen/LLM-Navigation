@@ -55,7 +55,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">2. Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ros2.html">3. ROS2 Humble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros2.html">3. ROS2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">4. Quick start</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
@@ -118,15 +118,34 @@ the agent is tasked to navigate to the specified goal location using its forward
 <p><span class="caption-text">Pipeline</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
+<p>Research in 3D scene graphs (3DSG) offers valuable insights for our mapping approach.
+3DSG can hierarchically organize multiple levels of semantic meanings as nodes, including floors, places, and objects.
+The edges in a 3DSG can represent relationships between objects and the traversability between locations.
+Additionally, the real-time 3DSG construction approach presented by Hydra suggests the feasibility of integrating 3D scene graphs into our navigation task.</p>
+<p>This detailed semantic structure can serve as a mental map for the agent, facilitating query-to-point reasoning.
+For example, given a goal query like “I want to go to sleep, where should I go?” and the current 3D scene graph,
+the LLM can guide the agent towards the appropriate point.</p>
+<p>There are 3 main components in our architecture:</p>
+<ul class="simple">
+<li><p>The AMD KR260 acts as a core component that processes the inputs from several sensors, and updating the 3D scene graph.</p></li>
+<li><p>A local server response for semantic segmentation module.</p></li>
+<li><p>A LLM to reason the 3DSG based on the given query, and output the location the agent should go to.</p></li>
+</ul>
+<p>Compared to Hydra, our approach supports processing language queries, different from traditional navigation pipeline,
+which should input a specific goal by user, our pipeline significantly enhancing the flexibility of the user interface.
+Moreover, Hydra’s semantic segmentation method will limit its scene understanding capabilities across diverse environments.</p>
+<p>Initially, we aimed to address our navigation task using Reinforcement Learning (RL) methods
+due to their proven performance in obstacle avoidance and their ability to learn from various inputs
+(in our case, RGBD images, natural language, and the 3DSG). However, we found that RL methods are unstable during training,
+largely due to the sparsity of reward signals, and the noisy nature of real-world observations. Consequently,
+we transitioned from RL methods to 3DSG-based methods.</p>
 </section>
 <section id="features">
 <h2><span class="section-number">1.2. </span>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Automatically navigate the robot to a specific goal without any high-cost sensors.</p></li>
-<li><p>Based on a single camera and use deep learning methods.</p></li>
-<li><p>Use Sim-to-Real technology to eliminate the gap between virtual environment and real world.</p></li>
-<li><p>Introduce Virtual guidance to entice the agent to move toward a specific direction.</p></li>
-<li><p>Use Reinforcement learning to avoid obstacles while driving through crowds of people.</p></li>
+<li><p>Real-Time 3D scene graph construction</p></li>
+<li><p>Automatically navigate the robot to a specific goal with the help of the 3D scene graph</p></li>
+<li><p>Navigate to the goal location based on the user’s natural language instructions</p></li>
 </ul>
 </section>
 </section>

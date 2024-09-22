@@ -1,4 +1,4 @@
-ROS2 Humble
+ROS2
 ============
 
 For more information about ROS2, please visit the official ROS2 website: `ROS2 Humble <https://docs.ros.org/en/humble/index.html>`_.
