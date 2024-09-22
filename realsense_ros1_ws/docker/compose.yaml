@@ -1,0 +1,32 @@
+version: '3'
+services:
+  realsense-ros1-ws:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Specify the target platform to build the image.
+      # Reference: https://docs.docker.com/compose/compose-file/build/#platforms
+      # platforms:
+      #   - "linux/arm64"
+    image: ros2-realsense-ros1-ws
+    container_name: ros2-realsense-ros1-ws
+    stdin_open: true
+    tty: true
+    privileged: true
+    command: /bin/bash
+    network_mode: host
+    working_dir: /home/ros2-essentials/realsense_ros1_ws
+    environment:
+      - DISPLAY=${DISPLAY}
+      - CATKIN_WS=/home/ros2-essentials/realsense_ros1_ws
+    volumes:
+      # Mount local timezone into container. ( Readonly )
+      # Reference: https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      # Mount X11 server
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # Mount devices
+      - /dev:/dev
+      # Mount workspace
+      - ../..:/home/ros2-essentials
