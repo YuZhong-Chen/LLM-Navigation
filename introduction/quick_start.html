@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. How to use the code &mdash; LLM-Navigation  documentation</title>
+  <title>3. Quick start &mdash; LLM-Navigation  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -18,10 +19,12 @@
         <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Docker" href="../installation/installation.html" />
+    <link rel="next" title="4. ROS2 Humble" href="ros2.html" />
     <link rel="prev" title="2. Architecture" href="architecture.html" /> 
 </head>
 
@@ -48,14 +51,24 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">2. Architecture</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. How to use the code</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#step-by-step">3.1. Step By Step</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros2.html">4. ROS2 Humble</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">1. Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/docker.html">1. Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/devcontainer.html">2. Devcontainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/ros2.html">3. ROS2 Humble</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CodeBase</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/codebase_overview.html">1. CodeBase Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/hydra_ws.html">2. Hydra Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/kobuki_ws.html">3. Kobuki Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/llm_query_ws.html">4. LLM Query Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/realsense_ws.html">5. Realsense Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/ros1_bridge_ws.html">6. ROS1 Bridge Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/vlplidar_ws.html">7. VLP-16 LiDAR Workspace</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Demo</span></p>
 <ul>
@@ -76,9 +89,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>How to use the code</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Quick start</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/introduction/how_to_use.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/introduction/quick_start.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -86,14 +99,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="how-to-use-the-code">
-<h1><span class="section-number">3. </span>How to use the code<a class="headerlink" href="#how-to-use-the-code" title="Link to this heading"></a></h1>
-<section id="step-by-step">
-<h2><span class="section-number">3.1. </span>Step By Step<a class="headerlink" href="#step-by-step" title="Link to this heading"></a></h2>
+  <section id="quick-start">
+<h1><span class="section-number">3. </span>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h1>
+<p>Before you start, make sure you have read the <a class="reference internal" href="../codebase/codebase_overview.html#codebase-overview-link"><span class="std std-ref">CodeBase Overview</span></a> section.</p>
 <ol class="arabic simple">
 <li><p>Clone the repository …</p></li>
 </ol>
-</section>
 </section>
 
 
@@ -101,7 +112,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="architecture.html" class="btn btn-neutral float-left" title="2. Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../installation/installation.html" class="btn btn-neutral float-right" title="1. Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ros2.html" class="btn btn-neutral float-right" title="4. ROS2 Humble" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

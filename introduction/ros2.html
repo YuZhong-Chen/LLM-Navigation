@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. ROS2 Humble &mdash; LLM-Navigation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Docker" href="../installation/docker.html" />
+    <link rel="prev" title="3. Quick start" href="quick_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LLM-Navigation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">2. Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">3. Quick start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. ROS2 Humble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-ros">4.1. What is ROS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-use-ros2">4.2. Why Use ROS2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#core-features-of-ros2">4.3. Core Features of ROS2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-ros2-cli-commands">4.4. Basic ROS2 CLI Commands</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/docker.html">1. Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/devcontainer.html">2. Devcontainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/ros2.html">3. ROS2 Humble</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CodeBase</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/codebase_overview.html">1. CodeBase Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/hydra_ws.html">2. Hydra Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/kobuki_ws.html">3. Kobuki Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/llm_query_ws.html">4. LLM Query Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/realsense_ws.html">5. Realsense Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/ros1_bridge_ws.html">6. ROS1 Bridge Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/vlplidar_ws.html">7. VLP-16 LiDAR Workspace</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Demo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../demo/demo.html">1. Demo</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LLM-Navigation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>ROS2 Humble</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/introduction/ros2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ros2-humble">
+<h1><span class="section-number">4. </span>ROS2 Humble<a class="headerlink" href="#ros2-humble" title="Link to this heading"></a></h1>
+<p>For more information about ROS2, please visit the official ROS2 website: <a class="reference external" href="https://docs.ros.org/en/humble/index.html">ROS2 Humble</a>.</p>
+<section id="what-is-ros">
+<h2><span class="section-number">4.1. </span>What is ROS?<a class="headerlink" href="#what-is-ros" title="Link to this heading"></a></h2>
+<p>ROS (Robot Operating System) is a flexible framework designed to build robot applications.
+It enables developers to create complex robotics systems by providing tools and libraries for building, testing, and deploying robotic software.
+As an evolution of ROS (ROS1), ROS2 introduces major improvements, focusing on scalability, real-time performance, and improved communication mechanisms.</p>
+</section>
+<section id="why-use-ros2">
+<h2><span class="section-number">4.2. </span>Why Use ROS2?<a class="headerlink" href="#why-use-ros2" title="Link to this heading"></a></h2>
+<p>ROS2 offers a robust platform for those developing both simple and complex robot applications.
+It is especially useful in environments that require distributed systems, real-time control, or that use heterogeneous hardware.</p>
+<p>Key reasons to adopt ROS2 include:</p>
+<ul class="simple">
+<li><p><strong>Cross-platform compatibility</strong>: Works on Linux, Windows, and macOS.</p></li>
+<li><p><strong>Modularity</strong>: Provides a component-based architecture, allowing developers to reuse existing modules and customize them for their needs.</p></li>
+<li><p><strong>Scalability</strong>: Capable of handling large-scale distributed systems across multiple machines.</p></li>
+<li><p><strong>Real-time capabilities</strong>: ROS2 is designed with real-time communication in mind, enabling more predictable and timely responses.</p></li>
+<li><p><strong>Flexible communication layers</strong>: ROS2 supports different communication middleware, such as DDS (Data Distribution Service), making it more versatile for various applications.</p></li>
+</ul>
+<p>ROS2 is ideal for robotics researchers, hobbyists, and companies building robotic systems in diverse industries such as agriculture, healthcare, logistics, and manufacturing.
+It is particularly well-suited for:</p>
+<ul class="simple">
+<li><p>Developers building real-time systems.</p></li>
+<li><p>Teams working with distributed robotics applications.</p></li>
+<li><p>Anyone needing a scalable platform that supports multiple robots and machines working in sync.</p></li>
+</ul>
+</section>
+<section id="core-features-of-ros2">
+<h2><span class="section-number">4.3. </span>Core Features of ROS2<a class="headerlink" href="#core-features-of-ros2" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Node-based Architecture</strong></dt><dd><p>ROS2 applications are divided into <em>nodes</em>, where each node performs a specific task.
+These nodes communicate with each other using topics, services, or actions, providing a clear and maintainable structure for building complex systems.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Data Distribution Service (DDS) for Communication</strong></dt><dd><p>ROS2 uses DDS, a standardized middleware, to ensure reliable communication between nodes,
+whether they are on the same device or distributed across multiple machines.
+DDS offers better performance for real-time systems and is capable of handling high-volume data transfers, crucial for robotics applications.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Real-Time Systems</strong></dt><dd><p>Unlike ROS1, ROS2 can meet real-time constraints, making it suitable for applications that require fast and deterministic responses,
+such as autonomous vehicles, drones, and industrial robots.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Multi-Robot Support</strong></dt><dd><p>ROS2 is designed to support multiple robots operating together in the same environment.
+This is achieved by leveraging DDS, which allows communication across multiple networks, making it easy to scale up robot fleets.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="basic-ros2-cli-commands">
+<h2><span class="section-number">4.4. </span>Basic ROS2 CLI Commands<a class="headerlink" href="#basic-ros2-cli-commands" title="Link to this heading"></a></h2>
+<p>To interact with ROS2, you can use several command-line interface (CLI) commands. Here are some fundamental commands to get you started:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Listing Topics</strong></dt><dd><p>To see all active topics: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Echoing Topic Data</strong></dt><dd><p>To view messages published on a specific topic: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">echo</span> <span class="pre">&lt;topic_name&gt;</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Publishing to a Topic</strong></dt><dd><p>To publish messages to a specific topic: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">pub</span> <span class="pre">&lt;topic_name&gt;</span> <span class="pre">&lt;message_type&gt;</span> <span class="pre">&quot;&lt;message_data&gt;&quot;&quot;</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Launching the Node by Launch File</strong></dt><dd><p>To start a set of nodes defined in a launch file: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">&lt;package_name&gt;</span> <span class="pre">&lt;launch_file&gt;</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Listing Nodes</strong></dt><dd><p>To see all active nodes: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span> <span class="pre">list</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Inspecting Node Information</strong></dt><dd><p>To get information about a specific node: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span> <span class="pre">info</span> <span class="pre">&lt;node_name&gt;</span></code></p>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quick_start.html" class="btn btn-neutral float-left" title="3. Quick start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../installation/docker.html" class="btn btn-neutral float-right" title="1. Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, YuZhong-Chen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Docker &mdash; LLM-Navigation  documentation</title>
+  <title>2. Devcontainer &mdash; LLM-Navigation  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -18,11 +19,13 @@
         <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Demo" href="../demo/demo.html" />
-    <link rel="prev" title="3. How to use the code" href="../introduction/how_to_use.html" /> 
+    <link rel="next" title="3. ROS2 Humble" href="ros2.html" />
+    <link rel="prev" title="1. Docker" href="docker.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,15 +51,24 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/architecture.html">2. Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../introduction/how_to_use.html">3. How to use the code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/quick_start.html">3. Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/ros2.html">4. ROS2 Humble</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#setup-docker">1.1. Setup Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-docker-compose">1.2. Setup Docker Compose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">1. Docker</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Devcontainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros2.html">3. ROS2 Humble</a></li>
 </ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">CodeBase</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/codebase_overview.html">1. CodeBase Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/hydra_ws.html">2. Hydra Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/kobuki_ws.html">3. Kobuki Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/llm_query_ws.html">4. LLM Query Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/realsense_ws.html">5. Realsense Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/ros1_bridge_ws.html">6. ROS1 Bridge Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/vlplidar_ws.html">7. VLP-16 LiDAR Workspace</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Demo</span></p>
 <ul>
@@ -77,9 +89,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Docker</li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Devcontainer</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/installation/installation.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/installation/devcontainer.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -87,22 +99,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="docker">
-<h1><span class="section-number">1. </span>Docker<a class="headerlink" href="#docker" title="Link to this heading"></a></h1>
-<section id="setup-docker">
-<h2><span class="section-number">1.1. </span>Setup Docker<a class="headerlink" href="#setup-docker" title="Link to this heading"></a></h2>
-</section>
-<section id="setup-docker-compose">
-<h2><span class="section-number">1.2. </span>Setup Docker Compose<a class="headerlink" href="#setup-docker-compose" title="Link to this heading"></a></h2>
-</section>
+  <section id="devcontainer">
+<h1><span class="section-number">2. </span>Devcontainer<a class="headerlink" href="#devcontainer" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more information about installation, please visit the official <a class="reference external" href="https://code.visualstudio.com/docs/devcontainers/tutorial#_install-the-extension">devcontainer website</a>.</p>
+</div>
+<p>Press the link below to install the Devcontainer extension:</p>
+<p><a class="reference external" href="vscode:extension/ms-vscode-remote.remote-containers">Install the Devcontainer extension</a></p>
+<p>Or you can install it from the Visual Studio Code Marketplace:</p>
+<img alt="Devcontainer Extension" class="align-center" src="../_images/devcontainer.png" />
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../introduction/how_to_use.html" class="btn btn-neutral float-left" title="3. How to use the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../demo/demo.html" class="btn btn-neutral float-right" title="1. Demo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="docker.html" class="btn btn-neutral float-left" title="1. Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ros2.html" class="btn btn-neutral float-right" title="3. ROS2 Humble" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

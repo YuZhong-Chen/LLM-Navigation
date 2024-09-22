@@ -7,6 +7,7 @@
   <title>2. Architecture &mdash; LLM-Navigation  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -18,10 +19,12 @@
         <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. How to use the code" href="how_to_use.html" />
+    <link rel="next" title="3. Quick start" href="quick_start.html" />
     <link rel="prev" title="1. Introduction" href="introduction.html" /> 
 </head>
 
@@ -52,11 +55,24 @@
 <li class="toctree-l2"><a class="reference internal" href="#hardware">2.2. Hardware</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_use.html">3. How to use the code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">3. Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros2.html">4. ROS2 Humble</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">1. Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/docker.html">1. Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/devcontainer.html">2. Devcontainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/ros2.html">3. ROS2 Humble</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CodeBase</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/codebase_overview.html">1. CodeBase Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/hydra_ws.html">2. Hydra Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/kobuki_ws.html">3. Kobuki Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/llm_query_ws.html">4. LLM Query Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/realsense_ws.html">5. Realsense Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/ros1_bridge_ws.html">6. ROS1 Bridge Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase/vlplidar_ws.html">7. VLP-16 LiDAR Workspace</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Demo</span></p>
 <ul>
@@ -91,9 +107,23 @@
 <h1><span class="section-number">2. </span>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h1>
 <section id="software">
 <h2><span class="section-number">2.1. </span>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h2>
+<img alt="Software Architecture" class="align-center" src="../_images/software_arch.png" />
+<p>Our software architecture consists of four main modules. The low-level control module receives goal points and control signals to direct the robot’s movements.
+The segmentation module processes RGBD images from the robot’s sensors (camera, LiDAR, odometry) and identifies different objects and regions in the environment.
+The scene graph (SG) builder module constructs a 3D scene graph from the segmented data, representing spatial relationships and object attributes.
+Finally, the language query module, powered by a large language model, interprets high-level instructions and converts them into goal points for the low-level controller,
+enabling the robot to understand and execute complex tasks. Later, we will introduce our implementation details in the following paragraph.</p>
 </section>
 <section id="hardware">
 <h2><span class="section-number">2.2. </span>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h2>
+<img alt="Hardware Architecture" class="align-center" src="../_images/hardware_arch.png" />
+<p>In our hardware architecture, various components work together to enable the robot to navigate and interact with its environment efficiently.
+The AMD KR260 serves as the core component, interfacing with multiple sensors including the Realsense camera, VLP16 LiDAR, and the Kobuki wheeled robot.
+The KR260 processes input from these sensors, utilizing SLAM to construct a basic 2D costmap for navigation and building a 3D scene graph from labeled images.
+Due to the high computational load, a local server is employed for semantic segmentation,
+sending the labeled images back to the KR260 to build a semantic 3D scene graph. The scene graph is encoded into a hierarchical YAML file,
+which is then queried by a remote server hosting a Large Language Model (LLM) with goal descriptions such as “I want to go to bed.”
+The LLM processes these queries and returns a goal point, which the KR260 uses to navigate the robot to the desired location.</p>
 </section>
 </section>
 
@@ -102,7 +132,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="introduction.html" class="btn btn-neutral float-left" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="how_to_use.html" class="btn btn-neutral float-right" title="3. How to use the code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quick_start.html" class="btn btn-neutral float-right" title="3. Quick start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

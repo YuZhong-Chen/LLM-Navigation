@@ -21,14 +21,30 @@ Links
 
    introduction/introduction
    introduction/architecture
-   introduction/how_to_use
+   introduction/quick_start
+   introduction/ros2
 
 .. toctree::
    :caption: Installation
    :maxdepth: 2
    :numbered:
 
-   installation/installation
+   installation/docker
+   installation/devcontainer   
+   installation/ros2
+
+.. toctree::
+   :caption: CodeBase
+   :maxdepth: 2
+   :numbered:
+
+   codebase/codebase_overview
+   codebase/hydra_ws
+   codebase/kobuki_ws
+   codebase/llm_query_ws
+   codebase/realsense_ws
+   codebase/ros1_bridge_ws
+   codebase/vlplidar_ws
 
 .. toctree::
    :caption: Demo
@@ -36,3 +52,5 @@ Links
    :numbered:
 
    demo/demo
+
+If you have any questions, please contact the author by email: ``yuzhong1214@gmail.com``, or create an issue on the `GitHub repository <https://github.com/YuZhong-Chen/LLM-Navigation>`_.
