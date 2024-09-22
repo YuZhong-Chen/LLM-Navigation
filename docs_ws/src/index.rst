@@ -39,6 +39,8 @@ Links
    :numbered:
 
    codebase/codebase_overview
+   codebase/cartographer_ws
+   codebase/gazebo_world_ws
    codebase/hydra_ws
    codebase/kobuki_ws
    codebase/llm_query_ws
