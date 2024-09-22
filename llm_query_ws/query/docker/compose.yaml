@@ -1,0 +1,24 @@
+version: '3'
+services:
+  llm-query:
+    build: .
+    image: assume/llm-query
+    container_name: llm-query
+    stdin_open: true
+    tty: true
+    privileged: true
+    command: /bin/bash
+    network_mode: host
+    working_dir: /workspace
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      # Mount local timezone into container. ( Readonly )
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      # Mount X11 server
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # Mount Device
+      - /dev:/dev
+      # Mount workspace
+      - ../:/workspace
