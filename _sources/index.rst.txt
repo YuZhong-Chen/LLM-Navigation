@@ -21,8 +21,8 @@ Links
 
    introduction/introduction
    introduction/architecture
-   introduction/quick_start
    introduction/ros2
+   introduction/quick_start
 
 .. toctree::
    :caption: Installation
