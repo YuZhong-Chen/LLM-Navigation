@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Hydra Workspace" href="hydra_ws.html" />
+    <link rel="next" title="2. Cartographer Workspace" href="cartographer_ws.html" />
     <link rel="prev" title="3. ROS2 Humble" href="../installation/ros2.html" /> 
 </head>
 
@@ -63,12 +63,14 @@
 <p class="caption" role="heading"><span class="caption-text">CodeBase</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. CodeBase Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hydra_ws.html">2. Hydra Workspace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kobuki_ws.html">3. Kobuki Workspace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm_query_ws.html">4. LLM Query Workspace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="realsense_ws.html">5. Realsense Workspace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ros1_bridge_ws.html">6. ROS1 Bridge Workspace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vlplidar_ws.html">7. VLP-16 LiDAR Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cartographer_ws.html">2. Cartographer Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gazebo_world_ws.html">3. Gazebo World Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydra_ws.html">4. Hydra Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kobuki_ws.html">5. Kobuki Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm_query_ws.html">6. LLM Query Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="realsense_ws.html">7. Realsense Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros1_bridge_ws.html">8. ROS1 Bridge Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vlplidar_ws.html">9. VLP-16 LiDAR Workspace</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Demo</span></p>
 <ul>
@@ -101,6 +103,67 @@
              
   <section id="codebase-overview">
 <span id="codebase-overview-link"></span><h1><span class="section-number">1. </span>CodeBase Overview<a class="headerlink" href="#codebase-overview" title="Link to this heading"></a></h1>
+<p>To ensure better maintenance of our code, we have packaged all the necessary code into Docker and divided it into multiple workspaces based on functionality.
+Normally, you only need to navigate to the specified workspace location and use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span></code> to complete all environment setup.</p>
+<p>Below is the complete list of workspaces along with a brief introduction to each workspace.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cartographer_ws</dt><dd><ul>
+<li><p>Setup the Cartographer SLAM.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>gazebo_world_ws</dt><dd><ul>
+<li><p>Generate the Gazebo world.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>hydra_ws</dt><dd><ul>
+<li><p>Generate the scene graph in real-time.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>kobuki_ws</dt><dd><ul>
+<li><p>Bring up the kobuki robot.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>realsense_ros1_ws</dt><dd><ul>
+<li><p>Bring up the Intel Realsense camera.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ros1_bridge_ws</dt><dd><ul>
+<li><p>Message exchanging between ROS1 noetic and ROS2 humble.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>vlp_ws</dt><dd><ul>
+<li><p>Bring up the VLP-16 LiDAR.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>llm_query_ws</dt><dd><ul>
+<li><p>Query the LLM.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </section>
 
 
@@ -108,7 +171,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../installation/ros2.html" class="btn btn-neutral float-left" title="3. ROS2 Humble" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hydra_ws.html" class="btn btn-neutral float-right" title="2. Hydra Workspace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cartographer_ws.html" class="btn btn-neutral float-right" title="2. Cartographer Workspace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
