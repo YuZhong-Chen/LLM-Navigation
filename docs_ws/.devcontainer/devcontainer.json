@@ -1,0 +1,22 @@
+/* Reference: https://aka.ms/devcontainer.json */
+{
+    "name": "Docs",
+    "dockerComposeFile": "../docker/compose.yaml",
+    "service": "docs-ws",
+    // Workspace settings
+    "workspaceFolder": "/home/ros2-essentials/docs_ws",
+    // Vscode extensions
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "mhutchie.git-graph",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    }
+}
