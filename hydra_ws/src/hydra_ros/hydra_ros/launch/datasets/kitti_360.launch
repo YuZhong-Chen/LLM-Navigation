@@ -1,0 +1,29 @@
+<launch>
+    <arg name="sim_time_required" default="false"/>
+    <param name="use_sim_time" value="$(arg sim_time_required)"/>
+
+    <!-- options -->
+    <arg name="config_dir" default="$(find hydra)/config/kitti_360"/>
+    <arg name="color_places_by_distance" default="true"/>
+    <arg name="use_oriented_bounding_boxes" default="true"/>
+
+    <!-- frames -->
+    <arg name="robot_frame" default="kitti360_gpsimu"/>
+    <arg name="odom_frame" default="map"/>
+    <arg name="sensor_frame" default="kitti360_velodyne"/>
+
+    <!-- semantics -->
+    <arg name="labelspace_name" default="kitti_360"/>
+    <arg name="semantic_map_dir" default="$(find hydra)/config/kitti_360/"/>
+    <arg name="semantic_map_file" default="colors.csv"/>
+    <arg name="semantic_map_path" default="$(arg semantic_map_dir)/$(arg semantic_map_file)"/>
+
+    <!-- topics -->
+    <arg name="pointcloud_topic" value="/kitti360/cloud_labeled"/>
+
+    <include file="$(find hydra_ros)/launch/hydra.launch" pass_all_args="true">
+        <arg name="dataset_name" value="kitti_360"/>
+        <arg name="rviz_file" default="kitti_360.rviz"/>
+        <arg name="use_gt_frame" value="true"/>
+    </include>
+</launch>

@@ -1,0 +1,6 @@
+# model_filename: "/home/user/catkin_ws/src/segmentation/scripts/lseg_minimal/checkpoints/lseg_minimal_e200.ckpt"
+
+visualization: False
+output_csv: True
+output_label_space: True
+label_class: "wooden floor,white wall,ceiling,door,sofa,wooden cabinet,white table,television,big light blue ball,wooden table,shoe box,light,sink,dark blue chair,orange chair,refrigerator,other"

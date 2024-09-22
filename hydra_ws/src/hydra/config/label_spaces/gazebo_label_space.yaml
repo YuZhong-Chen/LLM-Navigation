@@ -1,0 +1,24 @@
+---
+total_semantic_labels: 17
+dynamic_labels: []
+invalid_labels: []
+object_labels: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+surface_places_labels: [0, 1, 2, 3]
+label_names:
+- {label: 0, name: wooden floor}
+- {label: 1, name: white wall}
+- {label: 2, name: ceiling}
+- {label: 3, name: door}
+- {label: 4, name: sofa}
+- {label: 5, name: wooden cabinet}
+- {label: 6, name: white table}
+- {label: 7, name: television}
+- {label: 8, name: big light blue ball}
+- {label: 9, name: wooden table}
+- {label: 10, name: shoe box}
+- {label: 11, name: light}
+- {label: 12, name: sink}
+- {label: 13, name: dark blue chair}
+- {label: 14, name: orange chair}
+- {label: 15, name: refrigerator}
+- {label: 16, name: other}

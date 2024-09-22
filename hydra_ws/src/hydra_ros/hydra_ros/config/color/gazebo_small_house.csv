@@ -1,0 +1,18 @@
+name,red,green,blue,alpha,id
+wooden floor,0,0,0,255,0
+white wall,128,0,0,255,1
+ceiling,0,128,0,255,2
+door,128,128,0,255,3
+sofa,0,0,128,255,4
+wooden cabinet,128,0,128,255,5
+white table,0,128,128,255,6
+television,128,128,128,255,7
+big light blue ball,64,0,0,255,8
+wooden table,192,0,0,255,9
+shoe box,64,128,0,255,10
+light,192,128,0,255,11
+sink,64,0,128,255,12
+dark blue chair,192,0,128,255,13
+orange chair,64,128,128,255,14
+refrigerator,192,128,128,255,15
+other,0,64,0,255,16

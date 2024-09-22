@@ -1,0 +1,15 @@
+<launch>
+
+    <!-- Semantic Segmentation node -->
+    <node pkg="segmentation" type="main.py" name="segmentation" output="screen">
+
+        <param name="model_filename" value="$(find segmentation)/scripts/lseg_minimal/checkpoints/lseg_minimal_e200.ckpt" />
+        <param name="output_csv_filename" value="$(find hydra_ros)/config/color/gazebo_small_house.csv" />
+        <param name="output_label_space_filename" value="$(find hydra)/config/label_spaces/gazebo_label_space.yaml" />
+
+        <!-- Load param yaml file -->
+        <rosparam command="load" file="$(find segmentation)/config/gazebo_label.yaml" />
+
+    </node>
+
+</launch>

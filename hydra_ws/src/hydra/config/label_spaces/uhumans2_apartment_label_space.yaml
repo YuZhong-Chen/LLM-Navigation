@@ -1,0 +1,27 @@
+---
+total_semantic_labels: 21
+dynamic_labels: [20]
+invalid_labels: []
+object_labels: [5, 7, 10, 11, 14, 16, 18]
+label_names:
+  - {label: 0, name: unknown}
+  - {label: 1, name: appliance}
+  - {label: 2, name: books}
+  - {label: 3, name: floor}
+  - {label: 4, name: ceiling}
+  - {label: 5, name: chair}
+  - {label: 6, name: vase}
+  - {label: 7, name: couch}
+  - {label: 8, name: plant}
+  - {label: 9, name: furniture}
+  - {label: 10, name: computer}
+  - {label: 11, name: lamp}
+  - {label: 12, name: painting}
+  - {label: 13, name: plant}
+  - {label: 14, name: bed}
+  - {label: 15, name: stairs}
+  - {label: 16, name: table}
+  - {label: 17, name: screens}
+  - {label: 18, name: trashcan}
+  - {label: 19, name: wall}
+  - {label: 20, name: human}

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hydra</name>
+  <version>2.0.0</version>
+  <description>Utilities for building a scene graph from sensor data</description>
+
+  <author email="na26933@mit.edu">Nathan Hughes</author>
+  <author email="yunchang@mit.edu">Yun Chang</author>
+  <maintainer email="na26933@mit.edu">Nathan Hughes</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>cmake</buildtool_depend>
+  <depend>config_utilities</depend>
+  <depend>eigen</depend>
+  <depend>gtsam</depend>
+  <depend>kimera_pgmo</depend>
+  <depend>spatial_hash</depend>
+  <depend>spark_dsg</depend>
+  <depend>teaserpp</depend>
+  <depend>libopencv-dev</depend>
+  <depend>libpcl-all-dev</depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+
+</package>
