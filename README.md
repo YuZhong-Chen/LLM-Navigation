@@ -4,6 +4,12 @@
 
 🌟 A framework for navigation tasks that can build the 3D scene graph in real-time and utilize large language model (LLM) to guide the robot.  
 
+<div align="center">
+    <a href="./">
+        <img src="./figures/pipeline.png" width="60%"/>
+    </a>
+</div>
+
 ## 🔥 Features
 
 - Real-time 3D scene graph construction
@@ -27,3 +33,21 @@ You can find the instructions [here](https://yuzhong-chen.github.io/LLM-Navigati
 ## ⚡ Quick Start
 
 Please refer to the [Manual](https://yuzhong-chen.github.io/LLM-Navigation/introduction/quick_start.html).
+
+## 📈 Result
+
+<div align="center">
+    <a href="./">
+        <img src="./figures/hydra-sim-demo1.png" width="60%"/>
+    </a>
+</div>
+
+<div align="center">
+    <a href="./">
+        <img src="./figures/hydra-sim-demo2.png" width="60%"/>
+    </a>
+</div>
+
+## 🎥 Demo Video
+
+[![Video](https://img.youtube.com/vi/1j9gkKwj_IY/0.jpg)](https://www.youtube.com/watch?v=1j9gkKwj_IY)
