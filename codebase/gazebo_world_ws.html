@@ -64,7 +64,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="codebase_overview.html">1. CodeBase Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cartographer_ws.html">2. Cartographer Workspace</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Gazebo World Workspace</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Gazebo World Workspace</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#target-worlds">3.1. Target worlds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-docker-image">3.2. Building docker image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-workspace">3.3. Building the workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-gazebo-worlds">3.4. Run the gazebo worlds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-gazebo-worlds-with-turtlebot3">3.5. Run the gazebo worlds with turtlebot3</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="hydra_ws.html">4. Hydra Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kobuki_ws.html">5. Kobuki Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="llm_query_ws.html">6. LLM Query Workspace</a></li>
@@ -104,7 +111,99 @@
   <section id="gazebo-world-workspace">
 <h1><span class="section-number">3. </span>Gazebo World Workspace<a class="headerlink" href="#gazebo-world-workspace" title="Link to this heading"></a></h1>
 <p>This repository contains several Gazebo worlds, which are valuable for testing robots or agents in both indoor and outdoor environments.</p>
+<section id="target-worlds">
+<h2><span class="section-number">3.1. </span>Target worlds<a class="headerlink" href="#target-worlds" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">aws_hospital</span></code></p></li>
+</ol>
+<figure class="align-center" id="id1">
+<img alt="aws_hospital" src="../_images/aws_hospital.png" />
+<figcaption>
+<p><span class="caption-text">aws_hospital world</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">aws_small_house</span></code></p></li>
+</ol>
+<figure class="align-center" id="id2">
+<img alt="aws_small_house" src="../_images/aws_small_house.png" />
+<figcaption>
+<p><span class="caption-text">aws_small_house world</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">citysim</span></code></p></li>
+</ol>
+<figure class="align-center" id="id3">
+<img alt="citysim" src="../_images/citysim.png" />
+<figcaption>
+<p><span class="caption-text">citysim world</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more target worlds, please refer to the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file in the repository.</p>
+</div>
+</section>
+<section id="building-docker-image">
+<h2><span class="section-number">3.2. </span>Building docker image<a class="headerlink" href="#building-docker-image" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Clone the repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">YuZhong</span><span class="o">-</span><span class="n">Chen</span><span class="o">/</span><span class="n">LLM</span><span class="o">-</span><span class="n">Navigation</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build the docker image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">LLM</span><span class="o">-</span><span class="n">Navigation</span><span class="o">/</span><span class="n">gazebo_world_ws</span><span class="o">/</span><span class="n">docker</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">pull</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">build</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="building-the-workspace">
+<h2><span class="section-number">3.3. </span>Building the workspace<a class="headerlink" href="#building-the-workspace" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Attach to the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">attach</span> <span class="n">ros2</span><span class="o">-</span><span class="n">gazebo</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">ws</span>
+</pre></div>
+</div>
+</li>
+<li><p>Compile the workspace:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">symlink</span><span class="o">-</span><span class="n">install</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ros2</span><span class="o">-</span><span class="n">essentials</span><span class="o">/</span><span class="n">gazebo_world_ws</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="run-the-gazebo-worlds">
+<h2><span class="section-number">3.4. </span>Run the gazebo worlds<a class="headerlink" href="#run-the-gazebo-worlds" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Launch the world:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace &lt;target world&gt; with the name of the world you wish to launch.</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">gazebo_launch</span> <span class="o">&lt;</span><span class="n">target</span> <span class="n">world</span><span class="o">&gt;.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="run-the-gazebo-worlds-with-turtlebot3">
+<h2><span class="section-number">3.5. </span>Run the gazebo worlds with turtlebot3<a class="headerlink" href="#run-the-gazebo-worlds-with-turtlebot3" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Launch the world with turtlebot3:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace &lt;target world&gt; with the name of the world you wish to launch.</span>
+<span class="n">ros2</span> <span class="n">launch</span> <span class="n">gazebo_launch</span> <span class="n">turtlebot3</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">gazebo_world</span><span class="o">:=&lt;</span><span class="n">target</span> <span class="n">world</span><span class="o">&gt;.</span><span class="n">world</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>For more details, please refer to the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file in the repository.</p>
+</div>
+</section>
 </section>
 
 

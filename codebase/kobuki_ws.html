@@ -66,7 +66,13 @@
 <li class="toctree-l1"><a class="reference internal" href="cartographer_ws.html">2. Cartographer Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gazebo_world_ws.html">3. Gazebo World Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hydra_ws.html">4. Hydra Workspace</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Kobuki Workspace</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Kobuki Workspace</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#building-docker-image">5.1. Building docker image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-workspace">5.2. Building the workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-test-in-gazebo">5.3. Simple test in Gazebo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-test-on-real-robot">5.4. Simple test on real robot</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="llm_query_ws.html">6. LLM Query Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="realsense_ws.html">7. Realsense Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ros1_bridge_ws.html">8. ROS1 Bridge Workspace</a></li>
@@ -104,7 +110,79 @@
   <section id="kobuki-workspace">
 <h1><span class="section-number">5. </span>Kobuki Workspace<a class="headerlink" href="#kobuki-workspace" title="Link to this heading"></a></h1>
 <p>This repository facilitates the quick configuration of the simulation environment and real robot driver for Kobuki.</p>
+<section id="building-docker-image">
+<h2><span class="section-number">5.1. </span>Building docker image<a class="headerlink" href="#building-docker-image" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Clone the repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">YuZhong</span><span class="o">-</span><span class="n">Chen</span><span class="o">/</span><span class="n">LLM</span><span class="o">-</span><span class="n">Navigation</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build the docker image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">LLM</span><span class="o">-</span><span class="n">Navigation</span><span class="o">/</span><span class="n">kobuki_ws</span><span class="o">/</span><span class="n">docker</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">pull</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">build</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="building-the-workspace">
+<h2><span class="section-number">5.2. </span>Building the workspace<a class="headerlink" href="#building-the-workspace" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Attach to the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">attach</span> <span class="n">ros2</span><span class="o">-</span><span class="n">kobuki</span><span class="o">-</span><span class="n">ws</span>
+</pre></div>
+</div>
+</li>
+<li><p>Compile the workspace:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">symlink</span><span class="o">-</span><span class="n">install</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="simple-test-in-gazebo">
+<h2><span class="section-number">5.3. </span>Simple test in Gazebo<a class="headerlink" href="#simple-test-in-gazebo" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Attach to the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">attach</span> <span class="n">ros2</span><span class="o">-</span><span class="n">kobuki</span><span class="o">-</span><span class="n">ws</span>
+</pre></div>
+</div>
+</li>
+<li><p>Launch the world:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">kobuki_launch</span> <span class="n">kobuki</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">is_sim</span><span class="o">:=</span><span class="n">true</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="simple-test-on-real-robot">
+<h2><span class="section-number">5.4. </span>Simple test on real robot<a class="headerlink" href="#simple-test-on-real-robot" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Attach to the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">attach</span> <span class="n">ros2</span><span class="o">-</span><span class="n">kobuki</span><span class="o">-</span><span class="n">ws</span>
+</pre></div>
+</div>
+</li>
+<li><p>Bringup script for real robot (make sure kobuki is connected to the computer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ros2</span><span class="o">-</span><span class="n">essentials</span><span class="o">/</span><span class="n">kobuki_ws</span>
+<span class="o">./</span><span class="n">script</span><span class="o">/</span><span class="n">kobuki</span><span class="o">-</span><span class="n">bringup</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p>Running the script for controlling the robot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ros2</span><span class="o">-</span><span class="n">essentials</span><span class="o">/</span><span class="n">kobuki_ws</span>
+<span class="o">./</span><span class="n">script</span><span class="o">/</span><span class="n">kobuki</span><span class="o">-</span><span class="n">teleop</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>For more details, please refer to the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file in the repository.</p>
+</div>
+</section>
 </section>
 
 

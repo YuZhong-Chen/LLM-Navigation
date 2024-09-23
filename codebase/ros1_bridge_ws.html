@@ -69,7 +69,10 @@
 <li class="toctree-l1"><a class="reference internal" href="kobuki_ws.html">5. Kobuki Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="llm_query_ws.html">6. LLM Query Workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="realsense_ws.html">7. Realsense Workspace</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. ROS1 Bridge Workspace</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. ROS1 Bridge Workspace</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#run-bridge-with-prebuilt-image">8.1. Run bridge with prebuilt image</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="vlplidar_ws.html">9. VLP-16 LiDAR Workspace</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Demo</span></p>
@@ -104,7 +107,27 @@
   <section id="ros1-bridge-workspace">
 <h1><span class="section-number">8. </span>ROS1 Bridge Workspace<a class="headerlink" href="#ros1-bridge-workspace" title="Link to this heading"></a></h1>
 <p>This workspace is utilized to create a bridge between ROS1 and ROS2-humble.</p>
+<section id="run-bridge-with-prebuilt-image">
+<h2><span class="section-number">8.1. </span>Run bridge with prebuilt image<a class="headerlink" href="#run-bridge-with-prebuilt-image" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Clone the repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">YuZhong</span><span class="o">-</span><span class="n">Chen</span><span class="o">/</span><span class="n">LLM</span><span class="o">-</span><span class="n">Navigation</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run docker compose:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">LLM</span><span class="o">-</span><span class="n">Navigation</span><span class="o">/</span><span class="n">ros1_bridge_ws</span><span class="o">/</span><span class="n">docker</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">pull</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>For more details, please refer to the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file in the repository.</p>
+</div>
+</section>
 </section>
 
 
