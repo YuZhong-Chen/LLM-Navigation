@@ -1,6 +1,6 @@
 ---
 # general
-z_offset_scale: 4.2
+z_offset_scale: 2.2
 visualize: true
 # nodes
 marker_scale: 0.6
