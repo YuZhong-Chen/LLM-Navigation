@@ -44,6 +44,7 @@ we transitioned from RL methods to 3DSG-based methods.
 Features
 --------
 
-- Real-Time 3D scene graph construction
-- Automatically navigate the robot to a specific goal with the help of the 3D scene graph
-- Navigate to the goal location based on the user's natural language instructions
+- Real-time construction of a 3D scene graph with open-set segmentation capabilities.
+- Outputs the scene graph in a human-readable format.
+- Designed with a user-friendly interface.
+- Provides integration with ROS (Robot Operating System).
