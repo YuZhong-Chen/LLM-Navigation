@@ -212,6 +212,9 @@ class DynamicSceneGraphVisualizer {
   ros::Publisher dsg_pub_;
   ros::Publisher dynamic_layers_viz_pub_;
   std::list<std::shared_ptr<DsgVisualizerPlugin>> plugins_;
+
+  // Scene grapher parser
+  void dsg_parser(const DynamicSceneGraph& graph, const std::map<LayerId, LayerConfig>& configs);
 };
 
 }  // namespace hydra
