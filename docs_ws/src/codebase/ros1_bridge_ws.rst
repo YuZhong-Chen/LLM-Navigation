@@ -4,7 +4,7 @@ ROS1 Bridge Workspace
 This workspace is utilized to create a bridge between ROS1 and ROS2-humble.
 
 Run bridge with prebuilt image
-----------------
+-------------------------------
 
 1. Clone the repository::
 

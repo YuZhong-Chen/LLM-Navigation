@@ -17,7 +17,7 @@ Building docker image
     docker compose up -d --build
 
 Test in simulation environment
------------------------
+-------------------------------
 
 1. Attach to the container::
 

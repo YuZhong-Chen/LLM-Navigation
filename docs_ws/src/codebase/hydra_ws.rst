@@ -7,7 +7,7 @@ Hydra Workspace
     For more detailed information, please refer to the `original github repository <https://github.com/MIT-SPARK/Hydra>`_ or read the `paper <https://arxiv.org/abs/2201.13360>`_.
 
 Building docker image
----------------
+----------------------
 
 1. Clone the repository::
 
@@ -20,7 +20,7 @@ Building docker image
     docker compose run --rm --build hydra-ws-build
 
 Running hydra with default settings
----------------
+------------------------------------
 
 1. Run the container::
 

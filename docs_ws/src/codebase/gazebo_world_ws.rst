@@ -66,7 +66,7 @@ Run the gazebo worlds
     ros2 launch gazebo_launch <target world>.launch.py
 
 Run the gazebo worlds with turtlebot3
------------------------
+---------------------------------------
 
 1. Launch the world with turtlebot3::
     # Replace <target world> with the name of the world you wish to launch.

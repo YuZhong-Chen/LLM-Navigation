@@ -4,7 +4,7 @@ Kobuki Workspace
 This repository facilitates the quick configuration of the simulation environment and real robot driver for Kobuki.
 
 Building docker image
-----------------
+----------------------
 
 1. Clone the repository::
 
@@ -17,7 +17,7 @@ Building docker image
     docker compose up -d --build
 
 Building the workspace
-----------------
+-----------------------
 
 1. Attach to the container::
 
@@ -31,7 +31,7 @@ Building the workspace
     colcon build --symlink-install --packages-ignore velodyne_gazebo_plugins
 
 Simple test in Gazebo
-----------------
+----------------------
 
 1. Attach to the container::
 
@@ -42,7 +42,7 @@ Simple test in Gazebo
     ros2 launch kobuki_launch kobuki.launch.py is_sim:=true
 
 Simple test on real robot
-----------------
+--------------------------
 
 1. Attach to the container::
 
