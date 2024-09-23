@@ -25,10 +25,7 @@ Building the workspace
 
 2. Compile the workspace::
 
-    # For x86_64 architecture
     colcon build --symlink-install
-    # For arm64 architecture
-    colcon build --symlink-install --packages-ignore velodyne_gazebo_plugins
 
 Simple test in Gazebo
 ----------------------

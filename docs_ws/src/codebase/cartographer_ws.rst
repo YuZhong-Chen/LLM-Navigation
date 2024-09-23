@@ -24,6 +24,7 @@ Building the workspace
     docker attach ros2-cartographer-ws
     
 2. Install the dependencies and build the workspace::
+    
     cd /home/ros2-essentials/cartographer_ws
     rosdep update
     rosdep install --from-paths src --ignore-src --rosdistro humble -y
@@ -52,4 +53,5 @@ Simple test
     rqt_robot_steering
 
 .. note::
+
     For more details, please refer to the ``README.md`` file in the repository.
