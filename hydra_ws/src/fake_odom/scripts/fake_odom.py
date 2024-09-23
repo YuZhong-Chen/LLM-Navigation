@@ -17,15 +17,14 @@ def odom_callback(msg):
 
     # if current_time is None:
     #     return
+    current_time = rospy.Time.now()
 
     # br = tf.TransformBroadcaster()
     br = tf2_ros.StaticTransformBroadcaster()
 
     # Create TF message
     t = TransformStamped()
-    t.header.stamp = rospy.Time.now()
-    # t.header.frame_id = "odom"
-    # t.child_frame_id = "base_link"
+    t.header.stamp = current_time
     t.header.frame_id = "world"
     t.child_frame_id = "base_link_gt"
     t.transform.translation.x = msg.pose.pose.position.x
@@ -43,7 +42,6 @@ def odom_callback(msg):
     
     # Send static TF map -> odom
     t.header.frame_id = "map"
-    # t.child_frame_id = "odom"
     t.child_frame_id = "world"
     t.transform.translation.x = 0
     t.transform.translation.y = 0
@@ -56,14 +54,11 @@ def odom_callback(msg):
     br.sendTransform(t)
 
     # Broadcast the TF: base_link_gt -> left_cam
-    # t.header.frame_id = "base_link"
-    # t.child_frame_id = "camera_color_optical_frame"
     t.header.frame_id = "base_link_gt"
-    t.child_frame_id = "left_cam"
+    t.child_frame_id = "habitat_sim_camera_frame"
     t.transform.translation.x = 0
     t.transform.translation.y = 0.05
-    # t.transform.translation.z = 0.5
-    t.transform.translation.z = 0.8
+    t.transform.translation.z = 0
     t.transform.rotation.x = 0.5
     t.transform.rotation.y = -0.5
     t.transform.rotation.z = 0.5
@@ -72,15 +67,11 @@ def odom_callback(msg):
     br.sendTransform(t)
 
     # Broadcast the TF: base_link_gt -> right_cam
-    # t.header.frame_id = "base_link"
-    # t.child_frame_id = "camera_depth_optical_frame"
     t.header.frame_id = "base_link_gt"
     t.child_frame_id = "right_cam"
     t.transform.translation.x = 0
-    # t.transform.translation.y = 0.05
-    # t.transform.translation.z = 0.5
     t.transform.translation.y = -0.05
-    t.transform.translation.z = 0.8
+    t.transform.translation.z = 0
     t.transform.rotation.x = 0.5
     t.transform.rotation.y = -0.5
     t.transform.rotation.z = 0.5
@@ -102,7 +93,7 @@ def fake_odom():
     rospy.loginfo("[Fake Odom]: Fake odom node started")
 
     # Initialize the subscriber
-    rospy.Subscriber("/odom", Odometry, odom_callback)
+    rospy.Subscriber("/habitat_sim/odom", Odometry, odom_callback)
     rospy.Subscriber("/clock", Clock, clock_callback)
 
     # Initialize the broadcaster
