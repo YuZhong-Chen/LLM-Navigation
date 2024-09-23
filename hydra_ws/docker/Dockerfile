@@ -41,6 +41,10 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-gtsam \
     && rm -rf /var/lib/apt/lists/*
 
+# Install python packages
+RUN pip install timm==1.0.9
+RUN pip install git+https://github.com/openai/CLIP.git
+
 RUN apt-get update && apt-get dist-upgrade -y \
     && apt-get autoremove -y \
     && apt-get autoclean -y \
