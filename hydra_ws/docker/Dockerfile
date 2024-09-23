@@ -43,7 +43,7 @@ RUN apt-get update && apt-get dist-upgrade -y \
 ENV SHELL /bin/bash
 ENV TERM=xterm-256color
 
-RUN mkdir -p /home/ros2-essentials/catkin_ws/src/hydra
+RUN mkdir -p /home/user/catkin_ws/src/hydra
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME

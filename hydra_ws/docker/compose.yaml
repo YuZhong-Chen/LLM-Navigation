@@ -21,12 +21,10 @@ services:
             capabilities: [gpu]
     command: /bin/bash
     network_mode: host
-    working_dir: /home/ros2-essentials/catkin_ws
+    working_dir: /home/user
     environment:
-      # Set X11 server environment variable for existing display.
-      - DISPLAY=$DISPLAY
-      # Set ROS workspace environment variable.
-      - ROS_WS=/home/ros2-essentials/catkin_ws
+      - DISPLAY=${DISPLAY}
+      - ROS_WS=/home/user/catkin_ws
     volumes:
       # Mount local timezone into container. ( Readonly )
       # Reference: https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container
@@ -37,4 +35,4 @@ services:
       # Mount device
       - /dev:/dev
       # Mount workspace
-      - ..:/home/ros2-essentials/catkin_ws/
+      - ..:/home/user/catkin_ws/
