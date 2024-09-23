@@ -19,6 +19,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 # Install common tools
 RUN apt-get update && apt-get install -y \
+    bash-completion \
     curl \
     git \
     git-extras \
@@ -28,11 +29,16 @@ RUN apt-get update && apt-get install -y \
     tmux \
     vim \
     wget \
+    nlohmann-json3-dev \
+    libgoogle-glog-dev \
+    libprotobuf-dev \
+    libzmqpp-dev \
+    protobuf-compiler \
     python3-pip \
-    bash-completion \
     python3-rosdep \
     python3-catkin-tools \
     python3-vcstool \
+    ros-noetic-gtsam \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get dist-upgrade -y \
