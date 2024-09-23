@@ -1,0 +1,73 @@
+name,red,green,blue,alpha,id
+lamp,0,0,0,255,0
+ventilation,1,1,1,255,1
+smoke detector,2,2,2,255,2
+ceiling,3,3,3,255,3
+painting,4,4,4,255,4
+picture,5,5,5,255,5
+plant,6,6,6,255,6
+table,7,7,7,255,7
+pillow,8,8,8,255,8
+sofa,9,9,9,255,9
+trashcan,10,10,10,255,10
+book,11,11,11,255,11
+unknown,12,12,12,255,12
+chair,13,13,13,255,13
+desk,14,14,14,255,14
+wall,15,15,15,255,15
+door,16,16,16,255,16
+door frame,17,17,17,255,17
+window,18,18,18,255,18
+floor,19,19,19,255,19
+toilet,20,20,20,255,20
+cosmetics,21,21,21,255,21
+tap,22,22,22,255,22
+sink,23,23,23,255,23
+cabinet,24,24,24,255,24
+shelf,25,25,25,255,25
+shower curtain,26,26,26,255,26
+bathtub,27,27,27,255,27
+shower frame,28,28,28,255,28
+showerhead,29,29,29,255,29
+decor,30,30,30,255,30
+window frame,31,31,31,255,31
+pot,32,32,32,255,32
+clock,33,33,33,255,33
+box,34,34,34,255,34
+mug,35,35,35,255,35
+blanket,36,36,36,255,36
+bed,37,37,37,255,37
+shelving,38,38,38,255,38
+sprinkler,39,39,39,255,39
+basket,40,40,40,255,40
+ironing board,41,41,41,255,41
+railing,42,42,42,255,42
+cosmetic,43,43,43,255,43
+liquid soap,44,44,44,255,44
+clothes dryer,45,45,45,255,45
+washing machine,46,46,46,255,46
+cloth,47,47,47,255,47
+compressor,48,48,48,255,48
+outlet,49,49,49,255,49
+pipe,50,50,50,255,50
+recuperator,51,51,51,255,51
+frame,52,52,52,255,52
+air duct,53,53,53,255,53
+hose,54,54,54,255,54
+terrace,55,55,55,255,55
+wall control,56,56,56,255,56
+flower vase,57,57,57,255,57
+rug,58,58,58,255,58
+tv,59,59,59,255,59
+microwave,60,60,60,255,60
+stove,61,61,61,255,61
+refrigerator,62,62,62,255,62
+tray,63,63,63,255,63
+cook book,64,64,64,255,64
+fruit bowl,65,65,65,255,65
+worktop,66,66,66,255,66
+dishwasher,67,67,67,255,67
+drawers,68,68,68,255,68
+stool,69,69,69,255,69
+bottle,70,70,70,255,70
+cutting board,71,71,71,255,71
