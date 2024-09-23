@@ -14,13 +14,10 @@ from lseg_minimal.lseg import LSegNet
 from rosgraph_msgs.msg import Clock
 
 semantics_pub = None
-depth_pub = None
-rgb_pub = None
 current_time = None
 model = None
 text_feat_norm_list = None
 segmentation_classes = None
-depth_image = None
 cosine_similarity = torch.nn.CosineSimilarity(dim=1)
 
 def prepare(label_input, model_filename):
@@ -72,8 +69,8 @@ def generate_label_space(filename):
         f.write("total_semantic_labels: {}\n".format(len(segmentation_classes)))
         f.write("dynamic_labels: []\n")
         f.write("invalid_labels: []\n")
-        f.write("object_labels: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]\n")
-        f.write("surface_places_labels: [0, 1, 2, 3]\n")
+        f.write("object_labels: [1, 2, 4, 6]\n")
+        f.write("surface_places_labels: [0, 3, 5]\n")
         f.write("label_names:\n")
         for i, class_name in enumerate(segmentation_classes):
             f.write("- {{label: {}, name: {}}}\n".format(i, class_name))
@@ -94,11 +91,10 @@ def get_new_pallete(num_colors):
         pallete.append([r, g, b])
     return torch.tensor(pallete).float() / 255.0
 
-def image_callback(msg, semantic_pub, depth_pub, rgb_pub, current_time, p_v):
+def image_callback(msg, semantic_pub, current_time, p_v):
 
     if current_time is None:
         return
-    global seg_time, depth_image
 
     bridge = CvBridge()
     try:
@@ -156,18 +152,11 @@ def image_callback(msg, semantic_pub, depth_pub, rgb_pub, current_time, p_v):
         # Convert to ROS msgs and publish
         disp_msg = bridge.cv2_to_imgmsg(disp, "rgb8")
         disp_msg.header = msg.header
-        # disp_msg.header.stamp = rospy.Time.now()
-        # msg.header.stamp = rospy.Time.now()
         disp_msg.header.stamp = current_time
 
         # print("Message timestamp sec: {}, nsec: {}".format(disp_msg.header.stamp.secs, disp_msg.header.stamp.nsecs))
 
         semantics_pub.publish(disp_msg)
-        
-        if depth_image is not None:
-            depth_image.header.stamp = rospy.Time.now()
-            depth_pub.publish(depth_image)
-        rgb_pub.publish(msg)
 
     if p_v:
         cv2.imshow("Image window", cv_image)
@@ -179,13 +168,9 @@ def clock_callback(msg):
     global current_time
     current_time = msg.clock
 
-def depth_callback(msg, depth_pub):
-    global depth_image
-    depth_image = msg
-
 def main():
 
-    global semantics_pub, model, text_feat_norm_list, segmentation_classes, depth_pub
+    global semantics_pub, model, text_feat_norm_list, segmentation_classes
 
     #################################################
     # Init ROS node
@@ -226,13 +211,9 @@ def main():
     rospy.loginfo("[Semantic Segmentation]: Start ROS related components.")
 
     semantics_pub = rospy.Publisher("/semantic_segmentation", Image, queue_size=10)
-    depth_pub = rospy.Publisher("/depth_segmentation", Image, queue_size=10)
-    rgb_pub = rospy.Publisher("/rgb_segmentation", Image, queue_size=10)
 
-    image_cb = lambda msg: image_callback(msg, semantics_pub, depth_pub, rgb_pub, current_time, p_v)
-    depth_cb = lambda msg: depth_callback(msg, depth_pub)
+    image_cb = lambda msg: image_callback(msg, semantics_pub, current_time, p_v)
     rospy.Subscriber("/zed/zed_node/left_raw/image_raw_color", Image, image_cb)
-    rospy.Subscriber("/zed/zed_node/depth/depth_registered", Image, depth_cb)
     rospy.Subscriber("/clock", Clock, clock_callback)
 
     #################################################
