@@ -1,0 +1,72 @@
+- {label: 0, name: lamp}
+- {label: 1, name: ventilation}
+- {label: 2, name: smoke detector}
+- {label: 3, name: ceiling}
+- {label: 4, name: painting}
+- {label: 5, name: picture}
+- {label: 6, name: plant}
+- {label: 7, name: table}
+- {label: 8, name: pillow}
+- {label: 9, name: sofa}
+- {label: 10, name: trashcan}
+- {label: 11, name: book}
+- {label: 12, name: unknown}
+- {label: 13, name: chair}
+- {label: 14, name: desk}
+- {label: 15, name: wall}
+- {label: 16, name: door}
+- {label: 17, name: door frame}
+- {label: 18, name: window}
+- {label: 19, name: floor}
+- {label: 20, name: toilet}
+- {label: 21, name: cosmetics}
+- {label: 22, name: tap}
+- {label: 23, name: sink}
+- {label: 24, name: cabinet}
+- {label: 25, name: shelf}
+- {label: 26, name: shower curtain}
+- {label: 27, name: bathtub}
+- {label: 28, name: shower frame}
+- {label: 29, name: showerhead}
+- {label: 30, name: decor}
+- {label: 31, name: window frame}
+- {label: 32, name: pot}
+- {label: 33, name: clock}
+- {label: 34, name: box}
+- {label: 35, name: mug}
+- {label: 36, name: blanket}
+- {label: 37, name: bed}
+- {label: 38, name: shelving}
+- {label: 39, name: sprinkler}
+- {label: 40, name: basket}
+- {label: 41, name: ironing board}
+- {label: 42, name: railing}
+- {label: 43, name: cosmetic}
+- {label: 44, name: liquid soap}
+- {label: 45, name: clothes dryer}
+- {label: 46, name: washing machine}
+- {label: 47, name: cloth}
+- {label: 48, name: compressor}
+- {label: 49, name: outlet}
+- {label: 50, name: pipe}
+- {label: 51, name: recuperator}
+- {label: 52, name: frame}
+- {label: 53, name: air duct}
+- {label: 54, name: hose}
+- {label: 55, name: terrace}
+- {label: 56, name: wall control}
+- {label: 57, name: flower vase}
+- {label: 58, name: rug}
+- {label: 59, name: tv}
+- {label: 60, name: microwave}
+- {label: 61, name: stove}
+- {label: 62, name: refrigerator}
+- {label: 63, name: tray}
+- {label: 64, name: cook book}
+- {label: 65, name: fruit bowl}
+- {label: 66, name: worktop}
+- {label: 67, name: dishwasher}
+- {label: 68, name: drawers}
+- {label: 69, name: stool}
+- {label: 70, name: bottle}
+- {label: 71, name: cutting board}

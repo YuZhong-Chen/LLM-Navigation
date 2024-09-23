@@ -1,0 +1,25 @@
+/* Reference: https://aka.ms/devcontainer.json */
+{
+    "name": "Habitat-Sim",
+    "dockerComposeFile": "../docker/compose.yaml",
+    "service": "habitat-sim-ws",
+    // workspace settings
+    "workspaceFolder": "/home/user/ObjectSceneGraph/habitat_sim_ws",
+    // Vscode extensions
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "mhutchie.git-graph",
+                "streetsidesoftware.code-spell-checker",
+                "ms-iot.vscode-ros",
+                "oderwat.indent-rainbow",
+                "ms-python.black-formatter"
+            ]
+        }
+    }
+}
