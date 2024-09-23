@@ -2,9 +2,6 @@
     local-name: config_utilities
     uri: git@github.com:MIT-SPARK/config_utilities.git
 - git:
-    local-name: hydra_ros
-    uri: git@github.com:MIT-SPARK/Hydra-ROS.git
-- git:
     local-name: kimera_pgmo
     uri: git@github.com:MIT-SPARK/Kimera-PGMO.git
     version: future
