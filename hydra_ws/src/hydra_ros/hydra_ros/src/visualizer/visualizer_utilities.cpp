@@ -725,6 +725,7 @@ MarkerArray makeGraphEdgeMarkers(const std_msgs::Header& header,
       continue;
     }
 
+    // In place layer it is 0
     size_t num_between_insertions =
         configs.at(source.layer).interlayer_edge_insertion_skip;
 
@@ -755,6 +756,7 @@ MarkerArray makeGraphEdgeMarkers(const std_msgs::Header& header,
     target_point.z += getZOffset(configs.at(target.layer), visualizer_config);
     marker.points.push_back(target_point);
 
+    // After setting up the edge points, we will set the color of the edge
     Color edge_color;
     if (configs.at(source.layer).interlayer_edge_use_color) {
       if (configs.at(source.layer).use_edge_source) {

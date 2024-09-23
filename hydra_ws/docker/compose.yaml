@@ -1,4 +1,44 @@
 services:
+  hydra-ws-build:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    # TODO: Specify the target platform to build the image, otherwise it will build for the host platform.
+    # Reference: https://docs.docker.com/compose/compose-file/build/#platforms
+    # platforms:
+    #   - "linux/arm64"
+    image: assume/ros1-hydra-ws
+    container_name: ros1-hydra-ws-build
+    stdin_open: true
+    tty: true
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+    command: /bin/bash -c "cd /home/user/catkin_ws && sudo apt update && ./install.sh"
+    network_mode: host
+    working_dir: /home/user
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ROS_WS=/home/user/catkin_ws
+    volumes:
+      # Mount local timezone into container. ( Readonly )
+      # Reference: https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      # Mount X11 server
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # Mount device
+      - /dev:/dev
+      # Mount github ssh key
+      - ~/.ssh:/home/user/.ssh
+      # Mount workspace
+      - ..:/home/user/catkin_ws/
+
   hydra-ws:
     build: 
       context: .
@@ -21,12 +61,10 @@ services:
             capabilities: [gpu]
     command: /bin/bash
     network_mode: host
-    working_dir: /home/ros2-essentials/catkin_ws
+    working_dir: /home/user
     environment:
-      # Set X11 server environment variable for existing display.
-      - DISPLAY=$DISPLAY
-      # Set ROS workspace environment variable.
-      - ROS_WS=/home/ros2-essentials/catkin_ws
+      - DISPLAY=${DISPLAY}
+      - ROS_WS=/home/user/catkin_ws
     volumes:
       # Mount local timezone into container. ( Readonly )
       # Reference: https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container
@@ -36,5 +74,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       # Mount device
       - /dev:/dev
+      # Mount github ssh key
+      - ~/.ssh:/home/user/.ssh
       # Mount workspace
-      - ..:/home/ros2-essentials/catkin_ws/
+      - ..:/home/user/catkin_ws/

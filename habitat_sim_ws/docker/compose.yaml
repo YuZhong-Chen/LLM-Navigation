@@ -1,0 +1,35 @@
+version: '3'
+services:
+  habitat-sim-ws:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: assume/habitat-sim-ws
+    container_name: habitat-sim-ws
+    stdin_open: true
+    tty: true
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]
+    command: /bin/bash
+    network_mode: host
+    working_dir: /home/user/ObjectSceneGraph/habitat_sim_ws
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ROS_WS=/home/user/ObjectSceneGraph/habitat_sim_ws
+    volumes:
+      # Mount local timezone into container. ( Readonly )
+      # Reference: https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      # Mount X11 server
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # Mount device
+      - /dev:/dev
+      # Mount workspace
+      - ../..:/home/user/ObjectSceneGraph

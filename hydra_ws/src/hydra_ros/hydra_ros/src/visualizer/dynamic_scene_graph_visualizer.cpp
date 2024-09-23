@@ -34,6 +34,9 @@
  * -------------------------------------------------------------------------- */
 #include "hydra_ros/visualizer/dynamic_scene_graph_visualizer.h"
 
+#include <yaml-cpp/yaml.h>
+#include <fstream>
+
 #include <glog/logging.h>
 #include <spark_dsg/node_attributes.h>
 #include <tf2_eigen/tf2_eigen.h>
@@ -323,6 +326,8 @@ void DynamicSceneGraphVisualizer::redrawImpl(const std_msgs::Header& header,
     callback(scene_graph_);
   }
 
+  // Step 1: Draw the basic part of current scene graph - Layers
+  // Get visualizer config for the scene graph, and draw the layers
   const auto& visualizer_config = config_manager_->getVisualizerConfig();
   for (auto&& [layer_id, layer] : scene_graph_->layers()) {
     const auto layer_config = config_manager_->getLayerConfig(layer_id);
@@ -331,8 +336,16 @@ void DynamicSceneGraphVisualizer::redrawImpl(const std_msgs::Header& header,
     }
 
     if (!layer_config->visualize) {
+      // If the layer is not visualized, delete all markers associated with it
       deleteLayer(header, *layer, msg);
     } else {
+      // Otherwise, draw the layer
+      // Layer ID definition:
+      // 2: Objects layer
+      // 3: Places layer
+      // 4: Rooms layer
+      // 5: Buildings layer
+      // 20: Outdoor places layer
       drawLayer(header, *layer, *layer_config, msg);
     }
   }
@@ -358,6 +371,9 @@ void DynamicSceneGraphVisualizer::redrawImpl(const std_msgs::Header& header,
     addMultiMarkerIfValid(marker, msg);
     seen_edge_labels.insert(marker.ns);
   }
+
+  // Parse the interlayer edges and create our own data structure
+  dsg_parser(*scene_graph_, all_configs);
 
   for (const auto& source_pair : all_configs) {
     for (const auto& target_pair : all_configs) {
@@ -714,6 +730,96 @@ void DynamicSceneGraphVisualizer::drawLayerMeshEdges(const std_msgs::Header& hea
                                           scene_graph_->getLayer(layer_id),
                                           ns);
   addMultiMarkerIfValid(mesh_edges, msg);
+}
+
+void DynamicSceneGraphVisualizer::dsg_parser(const DynamicSceneGraph& graph, const std::map<LayerId, LayerConfig>& configs) {
+
+  // Dynamic scene graph parser
+
+  // Places connector - map each place node to it children NodeID
+  std::map<NodeId, std::vector<NodeId>> place_to_objects;
+  std::map<NodeId, std::vector<NodeId>> rooom_to_objects;
+  std::map<NodeId, std::vector<NodeId>> building_to_rooms;
+  std::map<NodeId, NodeId> place_to_room;
+
+  // Iterate through all of the interlayer edges
+  for (const auto& edge : graph.interlayer_edges()) {
+
+    // Get the source and target node
+    const auto& source = graph.getNode(edge.second.source);
+    const auto& target = graph.getNode(edge.second.target);
+
+    // After check if the source and target node are valid, 
+    // we filter out the edge which parent is not a place node.
+    if (source.layer == DsgLayers::PLACES) {
+      // Add the place and object node into our data structure
+      place_to_objects[edge.second.source].push_back(edge.second.target);
+    }
+    else if (source.layer == DsgLayers::ROOMS && target.layer == DsgLayers::PLACES) {
+      place_to_room[edge.second.target] = edge.second.source;
+    }
+    else if (source.layer == DsgLayers::BUILDINGS && target.layer == DsgLayers::ROOMS) {
+      building_to_rooms[edge.second.source].push_back(edge.second.target);
+    }
+  }
+
+  // Go through all object in place_to_objects and assign each object to its room
+  for (const auto& [place, objects] : place_to_objects) {
+    // Get the room node of the place node
+    const auto room = place_to_room[place];
+    // Assign each object to its room
+    for (const auto& object : objects) {
+      rooom_to_objects[room].push_back(object);
+    }
+  }
+
+  // If the building_to_rooms is empty, then add all of the rooms to building 0
+  if (building_to_rooms.empty()) {
+    building_to_rooms[0] = {};
+    for (const auto& [room, children] : rooom_to_objects) {
+      building_to_rooms[0].push_back(room);
+    }
+  }
+
+  // Create the yaml file
+  YAML::Emitter out;
+
+  for (const auto& [building, rooms] : building_to_rooms) {
+    out << YAML::BeginMap;
+    out << YAML::Key << "building";
+    out << YAML::Value << YAML::BeginMap;
+    out << YAML::Key << "id";
+    out << YAML::Value << NodeSymbol(building).getLabel();
+    for (const auto& room : rooms) {
+      out << YAML::Key << "room";
+      out << YAML::Value << YAML::BeginMap;
+      out << YAML::Key << "id";
+      out << YAML::Value << NodeSymbol(room).getLabel();
+      out << YAML::Key << "objects";
+      out << YAML::Value << YAML::BeginSeq;
+      for (const auto& object : rooom_to_objects[room]) {
+
+        const auto& node = graph.getNode(object);
+        std::string label = node.attributes<SemanticNodeAttributes>().name;
+
+        geometry_msgs::Point point;
+        tf2::convert(node.attributes().position, point);
+        std::string pose_str = "[" + std::to_string(point.x) + " " + std::to_string(point.y) + " " + std::to_string(point.z) + "]";
+
+        out << YAML::Value << NodeSymbol(object).getLabel() + " " + label + " " + pose_str;
+      }
+      out << YAML::EndSeq;
+      out << YAML::EndMap;
+    }
+    out << YAML::EndMap;
+  }
+
+  // Output the yaml file
+  std::ofstream fout("/home/user/catkin_ws/hierarchical_structure.yaml");
+
+  fout << out.c_str();
+
+  fout.close();
 }
 
 }  // namespace hydra

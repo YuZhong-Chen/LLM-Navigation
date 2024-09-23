@@ -1,0 +1,12 @@
+# VScode
+.vscode
+
+# ROS
+/build
+/devel
+/.catkin_workspace
+/src/CMakeLists.txt
+
+# Dataset
+v1/
+data/

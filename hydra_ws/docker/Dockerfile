@@ -19,6 +19,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 # Install common tools
 RUN apt-get update && apt-get install -y \
+    bash-completion \
     curl \
     git \
     git-extras \
@@ -28,12 +29,21 @@ RUN apt-get update && apt-get install -y \
     tmux \
     vim \
     wget \
+    nlohmann-json3-dev \
+    libgoogle-glog-dev \
+    libprotobuf-dev \
+    libzmqpp-dev \
+    protobuf-compiler \
     python3-pip \
-    bash-completion \
     python3-rosdep \
     python3-catkin-tools \
     python3-vcstool \
+    ros-noetic-gtsam \
     && rm -rf /var/lib/apt/lists/*
+
+# Install python packages
+RUN pip install timm==1.0.9
+RUN pip install git+https://github.com/openai/CLIP.git
 
 RUN apt-get update && apt-get dist-upgrade -y \
     && apt-get autoremove -y \
@@ -43,7 +53,7 @@ RUN apt-get update && apt-get dist-upgrade -y \
 ENV SHELL /bin/bash
 ENV TERM=xterm-256color
 
-RUN mkdir -p /home/ros2-essentials/catkin_ws/src/hydra
+RUN mkdir -p /home/user/catkin_ws/src/hydra
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME

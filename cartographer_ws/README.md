@@ -3,11 +3,11 @@
 ### Run with docker
 
 ```bash
-git clone https://github.com/j3soon/ros2-essentials.git
+git clone https://github.com/YuZhong-Chen/LLM-Navigation.git
 ```
 
 ```bash
-cd ros2-essentials/cartographer_ws/docker
+cd LLM-Navigation/cartographer_ws/docker
 docker compose pull
 docker compose up -d --build
 ```
