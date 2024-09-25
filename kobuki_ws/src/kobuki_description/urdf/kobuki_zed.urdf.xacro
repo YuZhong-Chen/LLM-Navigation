@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot name="kobuki_zed_VLP16" xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- Arguments -->
+    <xacro:arg name="is_sim" default="true"/>
+    <xacro:arg name="zed_enabled" default="true"/>
+
+    <!-- Properties -->
+    <xacro:property name="is_sim" value="$(arg is_sim)"/>
+
+    <!-- Defines the kobuki component tag. -->
+    <xacro:include filename="$(find kobuki_description)/urdf/kobuki.urdf.xacro" />
+    <xacro:kobuki is_sim="${is_sim}"/>
+
+    <!-- Defines the ZED component tag. -->
+    <xacro:if value="$(arg zed_enabled)">
+        <xacro:include filename="$(find kobuki_description)/urdf/zed/zed_macro.urdf.xacro"/>
+        <xacro:include filename="$(find kobuki_description)/urdf/zed/zed_gazebo.urdf.xacro"/>
+        
+        <xacro:arg name="camera_name" default="zed"/>
+        <xacro:arg name="camera_model" default="zed2i"/>
+
+        <joint name="zed_mountpoint_joint" type="fixed">
+            <origin xyz="0 0 0.2" rpy="0 0 0" />
+            <parent link="base_link"/>
+            <child link="$(arg camera_name)_camera_link" />
+        </joint>
+
+        <xacro:zed_camera name="$(arg camera_name)" model="$(arg camera_model)" />
+        <xacro:if value="$(arg is_sim)">
+            <xacro:zed_gazebo name="$(arg camera_name)" />
+        </xacro:if>
+    </xacro:if>
+</robot>
