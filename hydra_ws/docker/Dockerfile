@@ -1,5 +1,13 @@
-# Base Image: https://hub.docker.com/r/osrf/ros/tags?page=1&name=noetic
-FROM osrf/ros:noetic-desktop-full
+# Base Image: https://hub.docker.com/r/osrf/ros/tags?page=1&name=humble
+FROM osrf/ros:noetic-desktop-full AS amd64
+# Base Image: https://hub.docker.com/r/arm64v8/ros/tags?page=1&name=humble
+FROM arm64v8/ros:noetic AS arm64
+
+# Use docker automatic platform args to select the base image.
+# It may be `arm64` or `amd64` depending on the platform.
+# Ref: https://docs.docker.com/reference/dockerfile/#automatic-platform-args-in-the-global-scope
+FROM $TARGETARCH
+ARG TARGETARCH
 
 LABEL org.opencontainers.image.authors="assume0701@gmail.com"
 
