@@ -20,7 +20,7 @@ echo "Done."
 
 # Source workspace environment.
 source /opt/ros/$ROS_DISTRO/setup.bash
-source /home/user/realsense_ros1_ws/devel/setup.bash
+source /home/ros2-essentials/realsense_ros1_ws/devel/setup.bash
 
 # Bring up the realsense camera.
-roslaunch realsense2_camera rs_camera.launch color_width:=640 color_height:=480 color_fps:=15 depth_width:=640 depth_height:=480 depth_fps:=15 align_depth:=true
+roslaunch realsense2_camera rs_camera.launch color_width:=640 color_height:=480 color_fps:=15 depth_width:=640 depth_height:=480 depth_fps:=15 align_depth:=true clip_distance:=3.0
