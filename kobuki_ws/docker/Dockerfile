@@ -101,6 +101,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=private \
     apt-get update && apt-get install -y \
     ros-$ROS_DISTRO-rviz2 \
     ros-$ROS_DISTRO-ros-testing \
+    ros-$ROS_DISTRO-rqt-robot-steering \
     ros-$ROS_DISTRO-kobuki-velocity-smoother \
     ros-$ROS_DISTRO-diagnostics \
     ros-$ROS_DISTRO-ecl-license \
