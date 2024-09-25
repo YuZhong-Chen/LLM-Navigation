@@ -28,7 +28,7 @@
     <!-- labelspace configuration -->
     <arg name="labelspace_dir" default="$(find hydra)/config/label_spaces"/>
     <arg name="labelspace_name"/>
-    <arg name="labelspace_path" default="$(arg labelspace_dir)/gazebo_label_space.yaml"/>
+    <arg name="labelspace_path" default="$(arg labelspace_dir)/habitat_label_space.yaml"/>
 
     <!-- sensor configuration -->
     <arg name="sensor_min_range" default="0.1" doc="minimum sensor range in meters"/>
