@@ -60,7 +60,7 @@
     <arg name="lcd_config_path" default="$(arg lcd_config_dir)/lcd_config.yaml" unless="$(arg use_gnn_descriptors)"/>
     <!-- zmq interface -->
     <arg name="use_zmq_interface" default="true"/>
-    <arg name="zmq_ip" default="192.168.8.196"/>
+    <arg name="zmq_ip" default="$(arg zmq_ip)"/>
     <arg name="zmq_send_url" default="tcp://$(arg zmq_ip):8001"/>
     <arg name="zmq_recv_url" default="tcp://$(arg zmq_ip):8002"/>
     <arg name="zmq_publish_mesh" default="true"/>

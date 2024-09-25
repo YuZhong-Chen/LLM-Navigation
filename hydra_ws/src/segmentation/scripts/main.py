@@ -19,6 +19,7 @@ model = None
 text_feat_norm_list = None
 segmentation_classes = None
 cosine_similarity = torch.nn.CosineSimilarity(dim=1)
+depth_image = None
 
 def prepare(label_input, model_filename):
 
@@ -69,8 +70,8 @@ def generate_label_space(filename):
         f.write("total_semantic_labels: {}\n".format(len(segmentation_classes)))
         f.write("dynamic_labels: []\n")
         f.write("invalid_labels: []\n")
-        f.write("object_labels: [4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]\n")
-        f.write("surface_places_labels: [0, 1, 2, 3, 5]\n")
+        f.write("object_labels: [4, 5, 6, 7]\n")
+        f.write("surface_places_labels: [0, 1, 2, 3]\n")
         f.write("label_names:\n")
         for i, class_name in enumerate(segmentation_classes):
             f.write("- {{label: {}, name: {}}}\n".format(i, class_name))
@@ -91,9 +92,18 @@ def get_new_pallete(num_colors):
         pallete.append([r, g, b])
     return torch.tensor(pallete).float() / 255.0
 
-def image_callback(msg, semantic_pub, current_time, p_v):
+def depth_cb(msg):
+    global depth_image
+    depth_image = msg
 
-    if current_time is None:
+def image_callback(msg, semantic_pub, rgb_pub, current_time, p_v, depth_pub):
+
+    # if current_time is None:
+    #     return
+
+    global depth_image
+
+    if depth_image is None:
         return
 
     bridge = CvBridge()
@@ -118,45 +128,53 @@ def image_callback(msg, semantic_pub, current_time, p_v):
         logits = model(img)
         logits_norm = torch.nn.functional.normalize(logits, dim=1)
 
-        # Compute the cosine similarity between the logits and the text features
-        similarities = []
-        for text_feat_norm in text_feat_norm_list:
-            similarity = cosine_similarity(
-                logits_norm,
-                text_feat_norm.unsqueeze(-1).unsqueeze(-1)
-            )
-            similarities.append(similarity)
+    # Compute the cosine similarity between the logits and the text features
+    similarities = []
+    for text_feat_norm in text_feat_norm_list:
+        similarity = cosine_similarity(
+            logits_norm,
+            text_feat_norm.unsqueeze(-1).unsqueeze(-1)
+        )
+        similarities.append(similarity)
 
-        # Get the class with the highest similarity
-        similarities = torch.stack(similarities, dim=0)
-        similarities = similarities.squeeze(1)  # num_classes, H // 2, W // 2
-        similarities = similarities.unsqueeze(0)  # 1, num_classes, H // 2, W // 2
-        class_scores = torch.max(similarities, 1)[1]  # 1, H // 2, W // 2
-        class_scores = class_scores[0].detach()
+    # Get the class with the highest similarity
+    similarities = torch.stack(similarities, dim=0)
+    similarities = similarities.squeeze(1)  # num_classes, H // 2, W // 2
+    similarities = similarities.unsqueeze(0)  # 1, num_classes, H // 2, W // 2
+    class_scores = torch.max(similarities, 1)[1]  # 1, H // 2, W // 2
+    class_scores = class_scores[0].detach()
 
-        pallete = get_new_pallete(len(segmentation_classes))
+    pallete = get_new_pallete(len(segmentation_classes))
 
-        # Resize class scores to original image size -> int
-        class_scores = class_scores.cpu().numpy()
-        class_scores = cv2.resize(class_scores, (cv_image.shape[1], cv_image.shape[0]), interpolation=cv2.INTER_NEAREST)
+    # Resize class scores to original image size -> int
+    class_scores = class_scores.cpu().numpy()
+    class_scores = cv2.resize(class_scores, (cv_image.shape[1], cv_image.shape[0]), interpolation=cv2.INTER_NEAREST)
 
-        disp = torch.zeros((class_scores.shape[0], class_scores.shape[1], 3), dtype=torch.float32)
-        for i, _ in enumerate(segmentation_classes):
-            disp[class_scores == i] = pallete[i]
+    disp = torch.zeros((class_scores.shape[0], class_scores.shape[1], 3), dtype=torch.float32)
+    for i, _ in enumerate(segmentation_classes):
+        disp[class_scores == i] = pallete[i]
 
-        # Convert to opencv image
-        disp = disp.cpu().numpy()
-        disp = (disp * 255).astype(np.uint8)
-        # disp = cv2.cvtColor(disp, cv2.COLOR_RGB2BGR)
+    # Convert to opencv image
+    disp = disp.cpu().numpy()
+    disp = (disp * 255).astype(np.uint8)
+    # disp = cv2.cvtColor(disp, cv2.COLOR_RGB2BGR)
 
-        # Convert to ROS msgs and publish
-        disp_msg = bridge.cv2_to_imgmsg(disp, "rgb8")
-        disp_msg.header = msg.header
-        disp_msg.header.stamp = current_time
+    # Convert to ROS msgs and publish
+    disp_msg = bridge.cv2_to_imgmsg(disp, "rgb8")
+    disp_msg.header = msg.header
+        
+        # Print the frame name
+        # print("Frame name: {}".format(msg.header.frame_id)) 
+
+        # disp_msg.header.stamp = msg.header.stamp
+        # disp_msg.header.stamp = msg.header.stamp + rospy.Duration(0.32)
 
         # print("Message timestamp sec: {}, nsec: {}".format(disp_msg.header.stamp.secs, disp_msg.header.stamp.nsecs))
 
-        semantics_pub.publish(disp_msg)
+    semantics_pub.publish(disp_msg)
+    rgb_pub.publish(msg)
+    depth_image.header.stamp = msg.header.stamp
+    depth_pub.publish(depth_image)
 
     if p_v:
         cv2.imshow("Image window", cv_image)
@@ -170,7 +188,7 @@ def clock_callback(msg):
 
 def main():
 
-    global semantics_pub, model, text_feat_norm_list, segmentation_classes
+    global semantics_pub, model, text_feat_norm_list, segmentation_classes, depth_image
 
     #################################################
     # Init ROS node
@@ -211,10 +229,13 @@ def main():
     rospy.loginfo("[Semantic Segmentation]: Start ROS related components.")
 
     semantics_pub = rospy.Publisher("/semantic_segmentation", Image, queue_size=10)
+    rgb_pub = rospy.Publisher("/color/image_raw", Image, queue_size=10)
+    depth_pub = rospy.Publisher("/camera/depth", Image, queue_size=10)
 
-    image_cb = lambda msg: image_callback(msg, semantics_pub, current_time, p_v)
-    rospy.Subscriber("/zed/zed_node/left_raw/image_raw_color", Image, image_cb)
+    image_cb = lambda msg: image_callback(msg, semantics_pub, rgb_pub, current_time, p_v, depth_pub)
+    rospy.Subscriber("/camera/color/image_raw", Image, image_cb)
     rospy.Subscriber("/clock", Clock, clock_callback)
+    rospy.Subscriber("/camera/aligned_depth_to_color/image_raw", Image, depth_cb)
 
     #################################################
     # Start the spin node

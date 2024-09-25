@@ -12,12 +12,21 @@ from geometry_msgs.msg import TransformStamped
 from rosgraph_msgs.msg import Clock
 
 current_time = None
+clock_pub = None
 
 def odom_callback(msg):
 
+    global clock_pub
+
     # if current_time is None:
     #     return
-    current_time = rospy.Time.now()
+    current_time = msg.header.stamp
+
+    if clock_pub is None:
+        return
+
+    # Publish the current time
+    clock_pub.publish(current_time)
 
     # br = tf.TransformBroadcaster()
     br = tf2_ros.StaticTransformBroadcaster()
@@ -55,23 +64,10 @@ def odom_callback(msg):
 
     # Broadcast the TF: base_link_gt -> left_cam
     t.header.frame_id = "base_link_gt"
-    t.child_frame_id = "left_cam"
+    t.child_frame_id = "camera_color_optical_frame"
     t.transform.translation.x = 0
-    t.transform.translation.y = 0.05
-    t.transform.translation.z = 0
-    t.transform.rotation.x = 0.5
-    t.transform.rotation.y = -0.5
-    t.transform.rotation.z = 0.5
-    t.transform.rotation.w = -0.5
-
-    br.sendTransform(t)
-
-    # Broadcast the TF: base_link_gt -> right_cam
-    t.header.frame_id = "base_link_gt"
-    t.child_frame_id = "right_cam"
-    t.transform.translation.x = 0
-    t.transform.translation.y = -0.05
-    t.transform.translation.z = 0
+    t.transform.translation.y = 0.02
+    t.transform.translation.z = 0.7
     t.transform.rotation.x = 0.5
     t.transform.rotation.y = -0.5
     t.transform.rotation.z = 0.5
@@ -84,16 +80,21 @@ def clock_callback(msg):
 
     # Update the current time
     global current_time
-    current_time = msg.clock
+    current_time = msg.clock - rospy.Duration(0.1)
 
 
 def fake_odom():
 
+    global clock_pub
+
     rospy.init_node('fake_odom', anonymous=True)
     rospy.loginfo("[Fake Odom]: Fake odom node started")
 
+    # Clock publisher
+    clock_pub = rospy.Publisher("/clock", Clock, queue_size=10)
+
     # Initialize the subscriber
-    rospy.Subscriber("/odom", Odometry, odom_callback)
+    rospy.Subscriber("/tf_to_topic/odom", Odometry, odom_callback)
     rospy.Subscriber("/clock", Clock, clock_callback)
 
     # Initialize the broadcaster
