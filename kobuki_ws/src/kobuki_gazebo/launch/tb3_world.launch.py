@@ -9,6 +9,11 @@ ARGUMENTS = [
         default_value="False",
         description="Launch rviz2, by default is False",
     ),
+    DeclareLaunchArgument(
+        "spawn_kobuki",
+        default_value="True",
+        description="Spawn kobuki, by default is True",
+    ),
 ]
 
 def generate_launch_description():
@@ -16,8 +21,8 @@ def generate_launch_description():
     world_file = PathJoinSubstitution(
         [
             FindPackageShare("kobuki_gazebo"),
-            "worlds",
-            "turtlebot3_world.world",
+            "worlds/turtlebot3",
+            "empty.world",
         ],
     )
 
@@ -33,10 +38,7 @@ def generate_launch_description():
         launch_arguments={
             "world_path": world_file,
             "launch_rviz": LaunchConfiguration("launch_rviz"),
-            "robot_init_x": "0.5",
-            "robot_init_y": "0.5",
-            "robot_init_z": "0.0",
-            "robot_init_yaw": "0.0",
+            "spawn_kobuki": LaunchConfiguration("spawn_kobuki"),
         }.items(),
     )
 

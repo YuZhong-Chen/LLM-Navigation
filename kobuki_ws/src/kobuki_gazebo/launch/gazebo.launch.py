@@ -32,6 +32,16 @@ ARGUMENTS = [
         description="Launch rviz2, by default is False",
     ),
     DeclareLaunchArgument(
+        "launch_gzclient",
+        default_value="False",
+        description="Launch gzclient, by default is False, which means headless mode",
+    ),
+    DeclareLaunchArgument(
+        "spawn_kobuki",
+        default_value="True",
+        description="Spawn kobuki, by default is True",
+    ),
+    DeclareLaunchArgument(
         "GAZEBO_MODEL_PATH",
         default_value="",
         description="The path to the gazebo models",
@@ -68,11 +78,9 @@ def generate_launch_description():
             ":",
             "/usr/share/gazebo-11/models/",
             ":",
-            str(
-                Path(get_package_share_directory("kobuki_description")).parent.resolve()
-            ),
+            str(Path(get_package_share_directory("kobuki_description")).parent.resolve()),
             ":",
-            get_package_share_directory("kobuki_gazebo") + "/models",
+            get_package_share_directory("kobuki_gazebo") + "/models/turtlebot3",
             ":",
             EnvironmentVariable("GAZEBO_MODEL_PATH", default_value=""),
         ],
@@ -89,13 +97,12 @@ def generate_launch_description():
         ),
         launch_arguments={
             "world": LaunchConfiguration("world_path"),
+            "gui": LaunchConfiguration("launch_gzclient"),
         }.items(),
     )
 
     # The path of .rviz file.
-    rviz_config_path = PathJoinSubstitution(
-        [FindPackageShare("kobuki_rviz"), "rviz", "gazebo.rviz"]
-    )
+    rviz_config_path = PathJoinSubstitution([FindPackageShare("kobuki_rviz"), "rviz", "gazebo.rviz"])
 
     # Launch rviz2.
     launch_rviz = IncludeLaunchDescription(
@@ -125,20 +132,7 @@ def generate_launch_description():
         launch_arguments={
             "use_sim_time": LaunchConfiguration("use_sim_time"),
         }.items(),
-    )
-
-    # Launch Kobuki's control
-    launch_kobuki_control = IncludeLaunchDescription(
-        PathJoinSubstitution(
-            [
-                FindPackageShare("kobuki_control"),
-                "launch",
-                "control.launch.py",
-            ]
-        ),
-        launch_arguments={
-            "use_sim_time": LaunchConfiguration("use_sim_time"),
-        }.items(),
+        condition=IfCondition(LaunchConfiguration("spawn_kobuki")),
     )
 
     # Spawn robot
@@ -155,13 +149,13 @@ def generate_launch_description():
             "-Y", LaunchConfiguration("robot_init_yaw"),
         ],
         output="screen",
+        condition=IfCondition(LaunchConfiguration("spawn_kobuki")),
     )
 
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(gz_resource_path)
     ld.add_action(launch_gazebo)
     ld.add_action(launch_kobuki_description)
-    ld.add_action(launch_kobuki_control)
     ld.add_action(spawn_robot)
     ld.add_action(launch_rviz)
 

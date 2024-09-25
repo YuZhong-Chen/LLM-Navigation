@@ -17,8 +17,8 @@
     <arg name="sensor_frame" default="camera_depth_optical_frame"/> -->
     <arg name="robot_frame" default="$(eval 'base_link_gt' if arg('use_gt_frame') else 'base_link_kimera')" doc="robot body tf frame"/>
     <arg name="odom_frame" default="$(eval 'world' if arg('use_gt_frame') else 'odom')" doc="odometry (map) frame"/>
-    <!-- <arg name="sensor_frame" default="$(eval 'left_cam' if arg('use_gt_frame') else 'left_cam_kimera')" doc="camera frame"/> -->
-    <arg name="sensor_frame" default="$(eval 'habitat_sim_camera_frame' if arg('use_gt_frame') else 'left_cam_kimera')" doc="camera frame"/>
+    <arg name="sensor_frame" default="$(eval 'left_cam' if arg('use_gt_frame') else 'left_cam_kimera')" doc="camera frame"/>
+    <!-- <arg name="sensor_frame" default="$(eval 'habitat_sim_camera_frame' if arg('use_gt_frame') else 'left_cam_kimera')" doc="camera frame"/> -->
 
     <!-- semantics -->
     <arg name="labelspace_name" default="$(eval 'uhumans2_office' if arg('use_gt_semantics') else 'ade20k_mp3d')" doc="semantic label space"/>
@@ -28,14 +28,14 @@
     <arg name="semantic_label_remap_filepath" default="$(find hydra)/config/label_remaps/uhumans2_office.yaml" if="$(arg use_single_channel_label_image)"/>
 
     <!-- TODO: Modify the camera topic to simulation camera -->
-    <!-- <arg name="rgb_info_topic" default="/camera/color/camera_info"/> -->
-    <!-- <arg name="rgb_topic" default="/zed/zed_node/left_raw/image_raw_color"/> -->
-    <!-- <arg name="depth_topic" default="/zed/zed_node/depth/depth_registered"/> -->
-    <!-- <arg name="label_topic" default="/semantic_segmentation"/> -->
-    <arg name="rgb_topic" default="/habitat_sim/rgb/image"/>
+    <arg name="rgb_info_topic" default="/zed/zed_node/left/camera_info"/>
+    <arg name="rgb_topic" default="/zed/zed_node/left_raw/image_raw_color"/>
+    <arg name="depth_topic" default="/zed/zed_node/depth/depth_registered"/>
+    <arg name="label_topic" default="/semantic_segmentation"/>
+    <!-- <arg name="rgb_topic" default="/habitat_sim/rgb/image"/>
     <arg name="rgb_info_topic" default="/habitat_sim/rgb/camera_info"/>
     <arg name="depth_topic" default="/habitat_sim/depth/image"/>
-    <arg name="label_topic" default="/habitat_sim/semantic/image"/>
+    <arg name="label_topic" default="/habitat_sim/semantic/image"/> -->
 
     <arg name="prerecorded_topic" default="/oneformer/labels/image_raw"/>
 
