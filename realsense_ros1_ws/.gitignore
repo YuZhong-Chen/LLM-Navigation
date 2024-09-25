@@ -1,6 +1,7 @@
 .vscode
 
-# ROS2 basic directories
+# ROS directories
 /build
-/install
-/log
+/devel
+/src/CMakeLists.txt
+/.catkin_workspace
