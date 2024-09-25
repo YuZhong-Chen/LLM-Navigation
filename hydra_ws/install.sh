@@ -16,6 +16,10 @@ catkin config --skiplist hdf5_map_io mesh_msgs_hdf5 label_manager mesh_tools rvi
 cd $SRC_DIR
 vcs import . < hydra/install/hydra.rosinstall
 
+# Install dependencies
+rosdep update
+rosdep install --from-paths . --ignore-src -r -y
+
 # Build the workspace
 cd $INSTALL_SCRIPT_DIR
 catkin build
