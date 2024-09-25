@@ -18,6 +18,31 @@ This repository is primarily based on the [kobuki-base](https://github.com/kobuk
 |    kobuki_rviz     |                                 Visualizing data in RViz2                                  |
 | velodyne_simulator |                                 Simulating VLP-16 in Gazebo                                |
 
+## 🚀 Quick Start 🚀
+
+This repo provides a Gazebo environment with kobuki for testing the 3D scene graph project. The following steps will guide you through the process to launch the testing environment.
+
+### Build the Docker image
+
+Note: It may take a long time (~20 mins) to build the Docker image, depending on your network speed and the performance of your machine.
+
+```bash
+cd /path/to/kobuki_ws/docker
+docker compose up -d --build
+```
+
+### Launch the testing environment
+
+1. Execute the command below to enter the container.
+    ```bash
+    docker exec -it ros2-kobuki-ws /bin/bash
+    ```
+
+2. Launch the testing environment.
+    ```bash
+    ros2 launch gazebo_rl_env rl_env.launch.py
+    ```
+
 ## 🚩 Testing 🚩
 
 ### Building packages
