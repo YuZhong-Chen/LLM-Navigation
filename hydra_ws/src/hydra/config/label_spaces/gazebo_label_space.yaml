@@ -1,16 +1,15 @@
 ---
-total_semantic_labels: 9
+total_semantic_labels: 8
 dynamic_labels: []
 invalid_labels: []
-object_labels: [4, 5, 6, 7]
+object_labels: [4, 5, 6]
 surface_places_labels: [0, 1, 2, 3]
 label_names:
 - {label: 0, name: floor}
 - {label: 1, name: wall}
 - {label: 2, name: ceiling}
 - {label: 3, name: door}
-- {label: 4, name: sofa}
+- {label: 4, name: arm chair}
 - {label: 5, name: table}
-- {label: 6, name: chair}
-- {label: 7, name: bicycle}
-- {label: 8, name: other}
+- {label: 6, name: bicycle}
+- {label: 7, name: other}

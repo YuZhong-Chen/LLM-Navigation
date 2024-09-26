@@ -3,4 +3,4 @@
 visualization: False
 output_csv: True
 output_label_space: True
-label_class: "floor,wall,ceiling,door,sofa,table,chair,bicycle,other"
+label_class: "floor,wall,ceiling,door,arm chair,table,bicycle,other"

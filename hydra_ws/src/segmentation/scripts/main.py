@@ -70,7 +70,7 @@ def generate_label_space(filename):
         f.write("total_semantic_labels: {}\n".format(len(segmentation_classes)))
         f.write("dynamic_labels: []\n")
         f.write("invalid_labels: []\n")
-        f.write("object_labels: [4, 5, 6, 7]\n")
+        f.write("object_labels: [4, 5, 6]\n")
         f.write("surface_places_labels: [0, 1, 2, 3]\n")
         f.write("label_names:\n")
         for i, class_name in enumerate(segmentation_classes):
