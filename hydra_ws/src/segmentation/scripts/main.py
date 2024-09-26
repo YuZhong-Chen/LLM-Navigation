@@ -93,8 +93,9 @@ def get_new_pallete(num_colors):
 
 def image_callback(msg, semantic_pub, current_time, p_v):
 
-    if current_time is None:
-        return
+    # if current_time is None:
+    #     return
+    current_time = rospy.Time.now()
 
     bridge = CvBridge()
     try:
