@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y \
     tmux \
     vim \
     wget \
+    udev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install realsense packages
