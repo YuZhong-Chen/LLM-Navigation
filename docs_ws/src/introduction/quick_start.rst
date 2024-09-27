@@ -15,7 +15,7 @@ This will help you better comprehend the purpose of each step.
 
 1. Clone the repository::
 
-    git clone https://github.com/YuZhong-Chen/LLM-Navigation.git
+    git clone https://github.com/YuZhong-Chen/LLM-Navigation.git -b hydra-sim-gazebo
 
 2. Start the ros1_bridge
 
