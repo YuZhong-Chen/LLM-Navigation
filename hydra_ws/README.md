@@ -14,5 +14,5 @@
     ```
     cd ~/catkin_ws
     source devel/setup.bash
-    roslaunch hydra_ros uhumans2.launch
+    roslaunch hydra_ros uhumans2.launch zmq_ip:=127.0.0.1
     ```
