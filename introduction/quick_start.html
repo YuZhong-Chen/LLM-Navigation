@@ -103,12 +103,15 @@
              
   <section id="quick-start">
 <h1><span class="section-number">4. </span>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h1>
+<p>This is a quick start guide to help you set up the environment and run the codebase.
+In order to simplify the process, we will use Gazebo simulation to demonstrate the process in this guide.
+If you want to run the codebase on a real robot, you need to modify the settings according to your robot configuration.</p>
 <p>Before you start, make sure you have read the <a class="reference internal" href="../codebase/codebase_overview.html#codebase-overview-link"><span class="std std-ref">CodeBase Overview</span></a> section and fully understand our architecture.
 This will help you better comprehend the purpose of each step.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>To enhance the possibility of reproduction, we provide Dockerfile and Docker Compose to help set up the environment.
-However, due to variations in the actual robot configurations, some Docker settings may need to be adjusted manually.</p>
+<p>To enhance the possibility of reproduction, we provide Dockerfile and Docker Compose to help you set up the environment.
+However, due to variations in the actual configurations, some Docker settings may need to be adjusted manually.</p>
 </div>
 <ol class="arabic">
 <li><p>Clone the repository:</p>
@@ -116,57 +119,39 @@ However, due to variations in the actual robot configurations, some Docker setti
 </pre></div>
 </div>
 </li>
-<li><p>Build the docker container for every workspace:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">LLM</span><span class="o">-</span><span class="n">Navigation</span>
-
-<span class="n">cd</span> <span class="n">cartographer_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">cd</span> <span class="n">gazebo_world_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">cd</span> <span class="n">hydra_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">cd</span> <span class="n">kobuki_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">cd</span> <span class="n">llm_query_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">cd</span> <span class="n">realsense_ros1_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">cd</span> <span class="n">vlp_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">cd</span> <span class="n">ros1_bridge_ws</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="o">..</span>
-</pre></div>
-</div>
-</li>
 <li><p>Start the ros1_bridge</p></li>
 </ol>
 <p>Please modify the <code class="docutils literal notranslate"><span class="pre">ROS_HOSTNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">ROS_MASTER_URI</span></code> in the <code class="docutils literal notranslate"><span class="pre">ros1_bridge_ws/docker/.env</span></code> based on your computer setup.
 Then, use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span></code> to create the ros1_bridge container and start the ros1_bridge.</p>
+<ol class="arabic simple" start="3">
+<li><p>Bring-up the Robot in Gazebo</p></li>
+</ol>
+<p>In the <code class="docutils literal notranslate"><span class="pre">kobuki_ws</span></code> directory, use the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span></code> to start the docker container and use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">gazebo_rl_env</span> <span class="pre">rl_env.launch.py</span></code> to
+start the Gazebo simulation with the Kobuki robot.</p>
 <ol class="arabic simple" start="4">
-<li><p>Bring-up the Robot</p></li>
+<li><p>Generate the 3D Scene Graph by Hydra</p></li>
 </ol>
-<p>Run the script <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> in <code class="docutils literal notranslate"><span class="pre">scripts</span></code> folder to bring up Kobuki, VLP-16 and Realsense.
-You may need to modify some settings based on your robot configuration.</p>
-<ol class="arabic simple" start="5">
-<li><p>Generate the 3D Scene Graph with LLM Guidance</p></li>
+<p>In the <code class="docutils literal notranslate"><span class="pre">hydra_ws</span></code> directory, use the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">run</span> <span class="pre">--rm</span> <span class="pre">--build</span> <span class="pre">hydra-ws-build</span></code> to build the environment.
+After the environment is built, use the command below to generate the 3D scene graph:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">catkin_ws</span>
+<span class="n">source</span> <span class="n">devel</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+<span class="n">roslaunch</span> <span class="n">hydra_ros</span> <span class="n">uhumans2</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<ol class="arabic" start="5">
+<li><p>Use keyboard teleoperation to move the robot in Gazebo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">run</span> <span class="n">teleop_twist_keyboard</span> <span class="n">teleop_twist_keyboard</span>
+</pre></div>
+</div>
+</li>
 </ol>
-<p>After building the package in <code class="docutils literal notranslate"><span class="pre">hydra_ws</span></code>, use the command <code class="docutils literal notranslate"><span class="pre">roslaunch</span> <span class="pre">hydra_ros</span> <span class="pre">run_sg.launch</span></code> to generate the 3D scene graph.
-Then, use the <code class="docutils literal notranslate"><span class="pre">query.py</span></code> script in <code class="docutils literal notranslate"><span class="pre">llm_query_ws</span></code> to query the LLM with the current scene graph.</p>
+<p>After you finish the above steps, you should be able to see the 3D scene graph in Rviz !</p>
+<figure class="align-center" id="id1">
+<img alt="image_1" src="../_images/hydra-sim-gz-demo.png" />
+<figcaption>
+<p><span class="caption-text">The screenshot of the 3D scene graph in Rviz</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 
 
