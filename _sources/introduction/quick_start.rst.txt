@@ -30,11 +30,12 @@ start the Gazebo simulation with the Kobuki robot.
 4. Generate the 3D Scene Graph by Hydra
 
 In the ``hydra_ws`` directory, use the command ``docker compose run --rm --build hydra-ws-build`` to build the environment.
-After the environment is built, use the command below to generate the 3D scene graph::
+After the environment is built, use the command ``docker compose run --rm hydra-ws`` to run the container,
+and use the command below to generate the 3D scene graph::
 
     cd ~/catkin_ws
     source devel/setup.bash
-    roslaunch hydra_ros uhumans2.launch
+    roslaunch hydra_ros uhumans2.launch zmq_ip:=127.0.0.1
 
 5. Use keyboard teleoperation to move the robot in Gazebo::
 

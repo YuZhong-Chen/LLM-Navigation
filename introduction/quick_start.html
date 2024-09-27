@@ -132,10 +132,11 @@ start the Gazebo simulation with the Kobuki robot.</p>
 <li><p>Generate the 3D Scene Graph by Hydra</p></li>
 </ol>
 <p>In the <code class="docutils literal notranslate"><span class="pre">hydra_ws</span></code> directory, use the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">run</span> <span class="pre">--rm</span> <span class="pre">--build</span> <span class="pre">hydra-ws-build</span></code> to build the environment.
-After the environment is built, use the command below to generate the 3D scene graph:</p>
+After the environment is built, use the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">run</span> <span class="pre">--rm</span> <span class="pre">hydra-ws</span></code> to run the container,
+and use the command below to generate the 3D scene graph:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">catkin_ws</span>
 <span class="n">source</span> <span class="n">devel</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
-<span class="n">roslaunch</span> <span class="n">hydra_ros</span> <span class="n">uhumans2</span><span class="o">.</span><span class="n">launch</span>
+<span class="n">roslaunch</span> <span class="n">hydra_ros</span> <span class="n">uhumans2</span><span class="o">.</span><span class="n">launch</span> <span class="n">zmq_ip</span><span class="o">:=</span><span class="mf">127.0.0.1</span>
 </pre></div>
 </div>
 <ol class="arabic" start="5">
