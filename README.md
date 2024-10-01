@@ -51,4 +51,4 @@ Please refer to the [Manual](https://yuzhong-chen.github.io/LLM-Navigation/intro
 
 ## 🎥 Demo Video
 
-[![Video](https://img.youtube.com/vi/1j9gkKwj_IY/0.jpg)](https://www.youtube.com/watch?v=1j9gkKwj_IY)
+[![Real World Demo](https://img.youtube.com/vi/qYd_oCzT4yE/0.jpg)](https://www.youtube.com/watch?v=qYd_oCzT4yE)
