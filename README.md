@@ -6,7 +6,7 @@
 
 <div align="center">
     <a href="./">
-        <img src="./figures/pipeline.png" width="60%"/>
+        <img src="./figures/arch.png" width="80%"/>
     </a>
 </div>
 
@@ -39,7 +39,7 @@ Please refer to the [Manual](https://yuzhong-chen.github.io/LLM-Navigation/intro
 
 <div align="center">
     <a href="./">
-        <img src="./figures/hydra-sim-demo1.png" width="60%"/>
+        <img src="./figures/habitat-sim-demo.png" width="60%"/>
     </a>
 </div>
 
