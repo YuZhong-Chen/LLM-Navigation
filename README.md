@@ -2,13 +2,15 @@
 
 [![documentation_link](https://img.shields.io/badge/docs-online-brightgreen.svg)](https://yuzhong-chen.github.io/LLM-Navigation/)
 
-🌟 A framework for navigation tasks that can build the 3D scene graph in real-time and utilize large language model (LLM) to guide the robot.  
+🌟 A framework for navigation tasks that can build the 3D scene graph in real time and utilize a large language model (LLM) to guide the robot.  
 
 <div align="center">
     <a href="./">
         <img src="./figures/arch.png" width="80%"/>
     </a>
 </div>
+
+> 🏅 This project won third place in the [AMD Pervasive AI Developer Contest 2024 (Robotics AI)](https://www.hackster.io/contests/amd2023#category-1091).
 
 ## 🔥 Features
 
