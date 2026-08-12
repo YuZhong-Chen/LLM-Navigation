@@ -1,3 +1,5 @@
+
+
 # 🏁 Navigator: Robo-Guide for Your Room!
 
 [![documentation_link](https://img.shields.io/badge/docs-online-brightgreen.svg)](https://yuzhong-chen.github.io/LLM-Navigation/)
@@ -26,6 +28,7 @@ If you want to test our program, we provide detailed [documentation 📄](https:
 ## ⚠️ Prerequisites
 
 - Ubuntu
+- Git
 - Docker and Docker compose
 - Visual Studio Code with the DevContainer extension
 
